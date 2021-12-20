@@ -544,7 +544,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Rate.Value</Value>
+				<Value>=Split(CStr(Fields!Rate.Value), "---").GetValue(0)</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                               </Style>
