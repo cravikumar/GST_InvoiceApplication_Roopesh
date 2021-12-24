@@ -257,12 +257,32 @@ namespace GST_InvoiceApplication
                 <MarginRight>0.4in</MarginRight>
                 <MarginBottom>0.2in</MarginBottom>
             </DeviceInfo>";
+
+            if (!_currentCompany.IsGSTApplicable)
+            {
+                deviceInfo =
+             @"<DeviceInfo>
+                <OutputFormat>EMF</OutputFormat>
+                <PageWidth>14in</PageWidth>
+                <PageHeight>8.5in</PageHeight>
+                <MarginTop>0.2in</MarginTop>
+                <MarginLeft>0.4in</MarginLeft>
+                <MarginRight>0.4in</MarginRight>
+                <MarginBottom>0.2in</MarginBottom>
+            </DeviceInfo>";
+
+            }
+
+
             Warning[] warnings;
             m_streams = new List<Stream>();
             //Code for roller printer
             //report.Render("Image", deviceInfo, CreateStream, out warnings);
 
             report.Render("Image", deviceInfo, CreateStream, out warnings);
+
+            
+
             foreach (Stream stream in m_streams)
                 stream.Position = 0;
 
@@ -273,7 +293,7 @@ namespace GST_InvoiceApplication
         }
 
 
-        public static void Print()
+        public  void Print()
         {
 
 
@@ -290,6 +310,14 @@ namespace GST_InvoiceApplication
             else
             {
                 printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
+                if (!_currentCompany.IsGSTApplicable)
+                {
+                    PrinterSettings ps = new PrinterSettings();
+                    printDoc.DefaultPageSettings.Landscape = true;
+                    IEnumerable<PaperSize> paperSizes = ps.PaperSizes.Cast<PaperSize>();
+                    PaperSize sizeLegal = paperSizes.First<PaperSize>(size => size.Kind == PaperKind.Legal); // setting paper size to A4 size
+                    printDoc.DefaultPageSettings.PaperSize = sizeLegal;
+                }
                 m_currentPageIndex = 0;
                 printDoc.Print();
 
