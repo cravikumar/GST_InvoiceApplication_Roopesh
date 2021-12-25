@@ -88,8 +88,19 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyDetailsBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button6
@@ -306,7 +317,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(454, 364);
+            this.button1.Location = new System.Drawing.Point(454, 401);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 70);
             this.button1.TabIndex = 32;
@@ -631,11 +642,112 @@
             this.progressBar1.TabIndex = 46;
             this.progressBar1.Visible = false;
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(267, 363);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 48;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(121, 359);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(126, 20);
+            this.label17.TabIndex = 47;
+            this.label17.Text = "Default Cash Bill";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(682, 330);
+            this.textBox14.MinimumSize = new System.Drawing.Size(4, 26);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(230, 20);
+            this.textBox14.TabIndex = 50;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(542, 336);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(111, 20);
+            this.label18.TabIndex = 49;
+            this.label18.Text = "Default Printer";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(8, 26);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(191, 21);
+            this.comboBox1.TabIndex = 51;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(216, 26);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(103, 23);
+            this.button5.TabIndex = 52;
+            this.button5.Text = "Set Printer Name";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Location = new System.Drawing.Point(931, 310);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(332, 67);
+            this.panel1.TabIndex = 53;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(93, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(130, 20);
+            this.label19.TabIndex = 54;
+            this.label19.Text = "Available Printers";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(688, 367);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(15, 14);
+            this.checkBox3.TabIndex = 55;
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(560, 363);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(116, 20);
+            this.label20.TabIndex = 54;
+            this.label20.Text = "Thermal Printer";
+            // 
             // SetupCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1275, 669);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.textBox14);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -678,6 +790,8 @@
             this.Text = "SetupCompany";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyDetailsBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -745,5 +859,15 @@
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Label label20;
     }
 }

@@ -34,6 +34,13 @@ namespace GST_InvoiceApplication
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             getCompanyData();
+
+            String pkInstalledPrinters;
+            for (int i = 0; i < System.Drawing.Printing.PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                pkInstalledPrinters = System.Drawing.Printing.PrinterSettings.InstalledPrinters[i];
+                comboBox1.Items.Add(pkInstalledPrinters);
+            }
         }
 
         public void getCompanyData()
@@ -74,10 +81,13 @@ namespace GST_InvoiceApplication
                 ", PropriterName = '" + textBox1.Text + "'" +
                 ", Address = '" + richTextBox1.Text + "'" +
                 ", IsGSTApplicable = '" + checkBox1.Checked.ToString() + "'" +
+                ", DefaultCashBill = '" + checkBox2.Checked.ToString() + "'" +
+                ", ThermalPrinter = '" + checkBox3.Checked.ToString() + "'" +
                 ", GSTIN = '" + textBox4.Text + "'" +
                 ", PANCard = '" + textBox5.Text + "'" +
                 ", Aadhaar = '" + textBox6.Text + "'" +
                 ", PhoneNo = '" + textBox3.Text + "'" +
+                ", DefaultPrinter = '" + textBox14.Text + "'" +
                 ", BOAddress = '" + textBox12.Text + "'" +
                 ", BillNo = " + textBox13.Text + "" +
                 ", BankName = '" + textBox7.Text + "'" +
@@ -96,28 +106,6 @@ namespace GST_InvoiceApplication
             getCompanyData();
         }
 
-        private CompanyDetails getScreenValues()
-        {
-            CompanyDetails details = new CompanyDetails();
-            details.CompanyID = Convert.ToInt32(textBox11.Text);
-            details.CompanyName = textBox2.Text;
-            details.PropriterName = textBox1.Text;
-            details.Address = richTextBox1.Text;
-            details.IsGSTApplicable = checkBox1.Checked;
-            details.GSTIN = textBox4.Text;
-            details.PANCard = textBox5.Text;
-            details.Aadhaar = textBox6.Text;
-            details.PhoneNumbers = textBox3.Text;
-            details.BankBranchAddress = textBox12.Text;
-            details.BillNo = Convert.ToInt32(textBox13.Text);
-            details.BankName = textBox7.Text;
-            details.BankAccNo = textBox8.Text;
-            details.BankBranchAddress = textBox9.Text;
-            details.IFSCCode = textBox10.Text;
-            details.LastModified = DateTime.Now;
-            return details;
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.CurrentCell.ColumnIndex == 19)
@@ -130,6 +118,8 @@ namespace GST_InvoiceApplication
                 textBox1.Text = dr["PropriterName"].ToString();
                 richTextBox1.Text = dr["Address"].ToString();
                 checkBox1.Checked = Convert.ToBoolean(dr["IsGSTApplicable"]);
+                checkBox2.Checked = Convert.ToBoolean(dr["DefaultCashBill"]);
+                checkBox3.Checked = Convert.ToBoolean(dr["ThermalPrinter"]);
                 textBox4.Text = dr["GSTIN"].ToString();
                 textBox5.Text = dr["PANCard"].ToString();
                 textBox6.Text = dr["Aadhaar"].ToString();
@@ -141,7 +131,7 @@ namespace GST_InvoiceApplication
                 textBox8.Text = dr["BankAccNo"].ToString();
                 textBox9.Text = dr["BankBranchAddress"].ToString();
                 textBox10.Text = dr["IFSCCode"].ToString();
-
+                textBox14.Text = dr["DefaultPrinter"].ToString();
 
                 button2.Enabled = true;
             }
@@ -418,6 +408,15 @@ namespace GST_InvoiceApplication
             }
             else
                 MessageBox.Show("XXXX Internet not available XXXX");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                // The combo box's Text property returns the selected item's text, which is the printer name.
+                textBox14.Text = comboBox1.Text;
+            }
         }
     }
 }

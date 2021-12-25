@@ -271,6 +271,9 @@ namespace GST_InvoiceApplication
             currentCompany.BillNo = Convert.ToInt32(dr["BillNo"]);
             currentCompany.BillDate = Convert.ToDateTime(dr["BillDate"]);
             currentCompany.BillPrefix = dr["BillPrefix"].ToString();
+            currentCompany.DefaultCashBill = Convert.ToBoolean(dr["DefaultCashBill"]);
+            currentCompany.ThermalPrinter = Convert.ToBoolean(dr["ThermalPrinter"]);
+            currentCompany.DefaultPrinter = dr["DefaultPrinter"].ToString();
 
             _selectedCompany = currentCompany;
 
@@ -781,6 +784,9 @@ namespace GST_InvoiceApplication
                 currentCompany.BillNo = Convert.ToInt32(dr["BillNo"]);
                 currentCompany.BillDate = Convert.ToDateTime(dr["BillDate"]);
                 currentCompany.BillPrefix = dr["BillPrefix"].ToString();
+                currentCompany.DefaultCashBill = Convert.ToBoolean(dr["DefaultCashBill"]);
+                currentCompany.ThermalPrinter = Convert.ToBoolean(dr["ThermalPrinter"]);
+                currentCompany.DefaultPrinter = dr["DefaultPrinter"].ToString();
                 companyList.Add(currentCompany);
 
             }
@@ -818,6 +824,9 @@ namespace GST_InvoiceApplication
                 currentCompany.BillNo = Convert.ToInt32(dr["BillNo"]);
                 currentCompany.BillDate = Convert.ToDateTime(dr["BillDate"]);
                 currentCompany.BillPrefix = dr["BillPrefix"].ToString();
+                currentCompany.DefaultCashBill = Convert.ToBoolean(dr["DefaultCashBill"]);
+                currentCompany.ThermalPrinter = Convert.ToBoolean(dr["ThermalPrinter"]);
+                currentCompany.DefaultPrinter = dr["DefaultPrinter"].ToString();
                 companyList.Add(currentCompany);
 
             }
@@ -1218,6 +1227,9 @@ namespace GST_InvoiceApplication
             currentCompany.BillNo = Convert.ToInt32(dr["BillNo"]);
             currentCompany.BillDate = Convert.ToDateTime(dr["BillDate"]);
             currentCompany.BillPrefix = dr["BillPrefix"].ToString();
+            currentCompany.DefaultCashBill = Convert.ToBoolean(dr["DefaultCashBill"]);
+            currentCompany.ThermalPrinter = Convert.ToBoolean(dr["ThermalPrinter"]);
+            currentCompany.DefaultPrinter = dr["DefaultPrinter"].ToString();
 
             _selectedCompany = currentCompany;
 
@@ -1281,12 +1293,21 @@ namespace GST_InvoiceApplication
             {
                 currentInvoice = currentInvoice + 1;
             }
+
+            if (_selectedCompany.DefaultCashBill)
+                comboBox4.SelectedItem = "CASH BILL";
+            else
+                comboBox4.SelectedItem = "CREDIT BILL";
+
+            if (_selectedCompany.ThermalPrinter)
+            { button1.Visible = false; button5.Visible = false; }
+            else
+            { button1.Visible = true; button5.Visible = true; }
             
 
             textBox12.Text = currentInvoice.ToString();
             recomputeRateByCompany();
             doFinalCheck();
-
         }
 
 
@@ -2481,6 +2502,9 @@ namespace GST_InvoiceApplication
                 button7.Visible = true;
 
                 button9.Visible = false;
+                if (_selectedCompany.ThermalPrinter)
+                { button1.Visible = false; button5.Visible = false; }
+
             }
             else
             {

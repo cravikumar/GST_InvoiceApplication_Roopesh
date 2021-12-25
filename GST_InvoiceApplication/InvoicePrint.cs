@@ -36,6 +36,11 @@ namespace GST_InvoiceApplication
             this._currentCompany = currentCompany;
             if (withOutLoading)
             {
+                if (_currentCompany.ThermalPrinter)
+                {
+                    PrintWithoutLoading();
+                    return;
+                }
                 PrintWithoutLoadingA4();
                 return;
             }
@@ -188,7 +193,7 @@ namespace GST_InvoiceApplication
             ReportDataSource rdsprod = new ReportDataSource("InvoiceProductSet", table);
             report.DataSources.Add(rdsprod);
 
-            ReportParameter p1 = new ReportParameter("CompanyName", _currentCompany.CompanyName);
+            ReportParameter p1 = new ReportParameter("CompanyName", _currentCompany.CompanyName.Split('-')[0]);
             ReportParameter p2 = new ReportParameter("CompanyAddressOneLine", _currentCompany.Address);
             ReportParameter p3 = new ReportParameter("PhoneNumbers", _currentCompany.PhoneNumbers);
             ReportParameter p4 = new ReportParameter("CompanyGSTNo", _currentCompany.GSTIN);
@@ -273,6 +278,25 @@ namespace GST_InvoiceApplication
 
             }
 
+            if (_currentCompany.ThermalPrinter)
+            {
+                double height = 3.6 + (productCount * 0.2);
+
+                deviceInfo =
+             @"<DeviceInfo>
+                <OutputFormat>EMF</OutputFormat>
+                <PageWidth>2.9in</PageWidth>
+                <PageHeight>"
+                +height.ToString()+
+                "in</PageHeight>" +
+                "<MarginTop>0.1in</MarginTop>" +
+                "<MarginLeft>0.01in</MarginLeft>" +
+                "<MarginRight>0.01in</MarginRight>" +
+                "<MarginBottom>0.1in</MarginBottom>" +
+                "</DeviceInfo>";
+
+            }
+
 
             Warning[] warnings;
             m_streams = new List<Stream>();
@@ -296,10 +320,6 @@ namespace GST_InvoiceApplication
         public  void Print()
         {
 
-
-
-
-
             if (m_streams == null || m_streams.Count == 0)
                 throw new Exception("Error: no stream to print.");
             PrintDocument printDoc = new PrintDocument();
@@ -309,6 +329,8 @@ namespace GST_InvoiceApplication
             }
             else
             {
+                if(_currentCompany.ThermalPrinter)
+                printDoc.PrinterSettings.PrinterName = _currentCompany.DefaultPrinter;
                 printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
                 if (!_currentCompany.IsGSTApplicable)
                 {
@@ -346,7 +368,7 @@ namespace GST_InvoiceApplication
             return stream;
         }
 
-        public static void PrintPage(object sender, PrintPageEventArgs ev)
+        public void PrintPage(object sender, PrintPageEventArgs ev)
         {
             Metafile pageImage = new
                Metafile(m_streams[m_currentPageIndex]);
@@ -363,6 +385,15 @@ namespace GST_InvoiceApplication
                 ev.PageBounds.Top - (int)ev.PageSettings.HardMarginY,
                 ev.PageBounds.Width,
                  ev.PageBounds.Height);
+
+            if(_currentCompany.ThermalPrinter)
+            {
+                adjustedRect = new Rectangle(
+                ev.PageBounds.Left - (int)ev.PageSettings.HardMarginX,
+                ev.PageBounds.Top - (int)ev.PageSettings.HardMarginY,
+                ev.PageBounds.Width,
+                360 + productCount * 20);
+            }
 
             // Draw a white background for the report
             ev.Graphics.FillRectangle(Brushes.White, adjustedRect);

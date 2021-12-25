@@ -29,5 +29,9 @@ namespace Invoice.Models
         public DateTime BillDate { get; set; }
         public string BillPrefix { get; set; }
 
+        public bool DefaultCashBill { get; set; }
+        public bool ThermalPrinter { get; set; }
+        public string DefaultPrinter { get; set; }
+
     }
 }
