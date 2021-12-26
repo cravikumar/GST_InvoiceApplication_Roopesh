@@ -221,6 +221,19 @@ namespace GST_InvoiceApplication
 
             headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
             textBox16.Text = textBox17.Text = (_defaultTax / 2).ToString();
+            ChangeCasing();
+
+
+        }
+        private void ChangeCasing()
+        {
+            textBox1.CharacterCasing = CharacterCasing.Upper;
+            textBox2.CharacterCasing = CharacterCasing.Upper;
+            textBox6.CharacterCasing = CharacterCasing.Upper;
+            textBox5.CharacterCasing = CharacterCasing.Upper;
+            textBox19.CharacterCasing = CharacterCasing.Upper;
+            textBox4.CharacterCasing = CharacterCasing.Upper;
+            textBox3.CharacterCasing = CharacterCasing.Upper;
         }
 
         private void HeaderCheckBox_Clicked(object sender, EventArgs e)
@@ -243,7 +256,7 @@ namespace GST_InvoiceApplication
             this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
             //LoadCompanyData();
-
+            ChangeCasing();
             //comboBox1.SelectedItem = "Test";
             isFirstSearchClick = true;
             string sql = "select * from CompanyData where ID = " + companyId.ToString();
@@ -439,7 +452,7 @@ namespace GST_InvoiceApplication
         {
             // TODO: This line of code loads data into the 'gSTDataSet.InvoiceProductDetails' table. You can move, or remove it, as needed.
             //this.invoiceProductDetailsTableAdapter.Fill(this.gSTDataSet.InvoiceProductDetails);
-
+            ChangeCasing();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -632,11 +645,6 @@ namespace GST_InvoiceApplication
                 textBox10.Text = "";
 
             }
-
-        }
-
-        private void dataGridView2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
 
         }
 
@@ -1514,6 +1522,7 @@ namespace GST_InvoiceApplication
             if (column == 0 && ConfigurationManager.AppSettings["isAutoCompleteEnabled"] == "true")
             {
                 TextBox tb = e.Control as TextBox;
+                tb.CharacterCasing = CharacterCasing.Upper;
                 if (tb != null)
                 {
                     tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;

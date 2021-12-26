@@ -32,7 +32,13 @@ namespace GST_InvoiceApplication
             this.WindowState = FormWindowState.Maximized;
 
             this._currentInvoice = inv;
-            productCount = _currentInvoice.Products.Count;
+            int count = 0;
+            foreach(var prod in _currentInvoice.Products)
+            {
+                count = count + (int)Math.Ceiling((double)prod.ProductName.Length / 18);
+            }
+
+            productCount = count;
             this._currentCompany = currentCompany;
             if (withOutLoading)
             {
