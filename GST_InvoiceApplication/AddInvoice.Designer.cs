@@ -49,6 +49,19 @@ namespace GST_InvoiceApplication
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActualPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtsDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hSNCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mtsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RateWithoutTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.invoiceProductsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -97,19 +110,7 @@ namespace GST_InvoiceApplication
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button9 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActualPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtsDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hSNCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RateWithoutTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saleIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Select = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceProductsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -120,7 +121,7 @@ namespace GST_InvoiceApplication
             this.button6.Location = new System.Drawing.Point(1143, 78);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(106, 48);
-            this.button6.TabIndex = 7;
+            this.button6.TabIndex = 70;
             this.button6.Text = "Home";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -137,12 +138,12 @@ namespace GST_InvoiceApplication
             // 
             // comboBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(144, 6);
+            this.comboBox1.Location = new System.Drawing.Point(144, 16);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(548, 41);
-            this.comboBox1.TabIndex = 9;
+            this.comboBox1.Size = new System.Drawing.Size(482, 33);
+            this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
@@ -162,7 +163,7 @@ namespace GST_InvoiceApplication
             this.comboBox2.Location = new System.Drawing.Point(144, 53);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(317, 21);
-            this.comboBox2.TabIndex = 12;
+            this.comboBox2.TabIndex = 2;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             this.comboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox2_KeyPress);
             // 
@@ -180,7 +181,7 @@ namespace GST_InvoiceApplication
             this.textBox1.Location = new System.Drawing.Point(111, 83);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(366, 20);
-            this.textBox1.TabIndex = 14;
+            this.textBox1.TabIndex = 3;
             this.textBox1.TextChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // label4
@@ -197,7 +198,7 @@ namespace GST_InvoiceApplication
             this.textBox2.Location = new System.Drawing.Point(111, 110);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(366, 20);
-            this.textBox2.TabIndex = 16;
+            this.textBox2.TabIndex = 4;
             this.textBox2.TextChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // label5
@@ -214,7 +215,7 @@ namespace GST_InvoiceApplication
             this.textBox3.Location = new System.Drawing.Point(617, 127);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(163, 20);
-            this.textBox3.TabIndex = 18;
+            this.textBox3.TabIndex = 7;
             this.textBox3.TextChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // label6
@@ -231,7 +232,7 @@ namespace GST_InvoiceApplication
             this.textBox4.Location = new System.Drawing.Point(617, 96);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(163, 20);
-            this.textBox4.TabIndex = 20;
+            this.textBox4.TabIndex = 6;
             this.textBox4.TextChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // button1
@@ -248,7 +249,7 @@ namespace GST_InvoiceApplication
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(698, 1);
+            this.label8.Location = new System.Drawing.Point(629, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(141, 44);
             this.label8.TabIndex = 28;
@@ -259,7 +260,7 @@ namespace GST_InvoiceApplication
             this.textBox6.Location = new System.Drawing.Point(110, 136);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(367, 20);
-            this.textBox6.TabIndex = 30;
+            this.textBox6.TabIndex = 5;
             this.textBox6.TextChanged += new System.EventHandler(this.SetTextChanged);
             this.textBox6.Leave += new System.EventHandler(this.textBox6_Leave);
             // 
@@ -294,12 +295,98 @@ namespace GST_InvoiceApplication
             this.dataGridView2.Location = new System.Drawing.Point(26, 178);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(1250, 303);
-            this.dataGridView2.TabIndex = 32;
+            this.dataGridView2.TabIndex = 12;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.dataGridView2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.dataGridView2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.grd_bill_master_EditingControlShowing);
             this.dataGridView2.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvUserDetails_RowPostPaint);
             this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView2_KeyDown);
+            // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            this.productNameDataGridViewTextBoxColumn.Width = 400;
+            // 
+            // ActualPrice
+            // 
+            this.ActualPrice.HeaderText = "~~";
+            this.ActualPrice.Name = "ActualPrice";
+            this.ActualPrice.ReadOnly = true;
+            this.ActualPrice.Width = 60;
+            // 
+            // mtsDescriptionDataGridViewTextBoxColumn
+            // 
+            this.mtsDescriptionDataGridViewTextBoxColumn.DataPropertyName = "MtsDescription";
+            this.mtsDescriptionDataGridViewTextBoxColumn.HeaderText = "MtsDescription";
+            this.mtsDescriptionDataGridViewTextBoxColumn.Name = "mtsDescriptionDataGridViewTextBoxColumn";
+            // 
+            // hSNCodeDataGridViewTextBoxColumn
+            // 
+            this.hSNCodeDataGridViewTextBoxColumn.DataPropertyName = "HSNCode";
+            this.hSNCodeDataGridViewTextBoxColumn.HeaderText = "HSNCode";
+            this.hSNCodeDataGridViewTextBoxColumn.Name = "hSNCodeDataGridViewTextBoxColumn";
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            // 
+            // mtsDataGridViewTextBoxColumn
+            // 
+            this.mtsDataGridViewTextBoxColumn.DataPropertyName = "Mts";
+            this.mtsDataGridViewTextBoxColumn.HeaderText = "Mts";
+            this.mtsDataGridViewTextBoxColumn.Name = "mtsDataGridViewTextBoxColumn";
+            // 
+            // rateDataGridViewTextBoxColumn
+            // 
+            this.rateDataGridViewTextBoxColumn.DataPropertyName = "Rate";
+            this.rateDataGridViewTextBoxColumn.HeaderText = "Rate";
+            this.rateDataGridViewTextBoxColumn.Name = "rateDataGridViewTextBoxColumn";
+            // 
+            // RateWithoutTax
+            // 
+            this.RateWithoutTax.DataPropertyName = "RateWithoutTax";
+            this.RateWithoutTax.HeaderText = "RateWithoutTax";
+            this.RateWithoutTax.Name = "RateWithoutTax";
+            this.RateWithoutTax.ReadOnly = true;
+            this.RateWithoutTax.Visible = false;
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "Total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "Delete";
+            this.Delete.UseColumnTextForButtonValue = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // saleIdDataGridViewTextBoxColumn
+            // 
+            this.saleIdDataGridViewTextBoxColumn.DataPropertyName = "SaleId";
+            this.saleIdDataGridViewTextBoxColumn.HeaderText = "SaleId";
+            this.saleIdDataGridViewTextBoxColumn.Name = "saleIdDataGridViewTextBoxColumn";
+            this.saleIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Select
+            // 
+            this.Select.HeaderText = ".";
+            this.Select.Name = "Select";
+            this.Select.Width = 40;
             // 
             // invoiceProductsBindingSource
             // 
@@ -402,9 +489,9 @@ namespace GST_InvoiceApplication
             // textBox12
             // 
             this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(832, 4);
+            this.textBox12.Location = new System.Drawing.Point(763, 12);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(130, 41);
+            this.textBox12.Size = new System.Drawing.Size(101, 41);
             this.textBox12.TabIndex = 44;
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
@@ -413,9 +500,9 @@ namespace GST_InvoiceApplication
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(968, 1);
+            this.button3.Location = new System.Drawing.Point(870, 11);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(151, 48);
+            this.button3.Size = new System.Drawing.Size(122, 48);
             this.button3.TabIndex = 45;
             this.button3.Text = "Search Bill";
             this.button3.UseVisualStyleBackColor = true;
@@ -430,7 +517,7 @@ namespace GST_InvoiceApplication
             this.comboBox4.Location = new System.Drawing.Point(891, 67);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 46;
+            this.comboBox4.TabIndex = 8;
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // dateTimePicker1
@@ -438,7 +525,7 @@ namespace GST_InvoiceApplication
             this.dateTimePicker1.Location = new System.Drawing.Point(891, 92);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 47;
+            this.dateTimePicker1.TabIndex = 9;
             // 
             // label9
             // 
@@ -593,7 +680,7 @@ namespace GST_InvoiceApplication
             this.textBox5.Location = new System.Drawing.Point(891, 123);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(163, 20);
-            this.textBox5.TabIndex = 64;
+            this.textBox5.TabIndex = 10;
             this.textBox5.TextChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // textBox19
@@ -601,15 +688,15 @@ namespace GST_InvoiceApplication
             this.textBox19.Location = new System.Drawing.Point(891, 152);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(163, 20);
-            this.textBox19.TabIndex = 65;
+            this.textBox19.TabIndex = 11;
             this.textBox19.TextChanged += new System.EventHandler(this.SetTextChanged);
             // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(1125, 1);
+            this.button4.Location = new System.Drawing.Point(999, 11);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(151, 48);
+            this.button4.Size = new System.Drawing.Size(117, 48);
             this.button4.TabIndex = 66;
             this.button4.Text = "New Bill";
             this.button4.UseVisualStyleBackColor = true;
@@ -748,7 +835,7 @@ namespace GST_InvoiceApplication
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(776, 48);
+            this.checkBox2.Location = new System.Drawing.Point(769, 54);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(50, 17);
             this.checkBox2.TabIndex = 81;
@@ -756,97 +843,23 @@ namespace GST_InvoiceApplication
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // productNameDataGridViewTextBoxColumn
+            // button10
             // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.Width = 400;
-            // 
-            // ActualPrice
-            // 
-            this.ActualPrice.HeaderText = "~~";
-            this.ActualPrice.Name = "ActualPrice";
-            this.ActualPrice.ReadOnly = true;
-            this.ActualPrice.Width = 60;
-            // 
-            // mtsDescriptionDataGridViewTextBoxColumn
-            // 
-            this.mtsDescriptionDataGridViewTextBoxColumn.DataPropertyName = "MtsDescription";
-            this.mtsDescriptionDataGridViewTextBoxColumn.HeaderText = "MtsDescription";
-            this.mtsDescriptionDataGridViewTextBoxColumn.Name = "mtsDescriptionDataGridViewTextBoxColumn";
-            // 
-            // hSNCodeDataGridViewTextBoxColumn
-            // 
-            this.hSNCodeDataGridViewTextBoxColumn.DataPropertyName = "HSNCode";
-            this.hSNCodeDataGridViewTextBoxColumn.HeaderText = "HSNCode";
-            this.hSNCodeDataGridViewTextBoxColumn.Name = "hSNCodeDataGridViewTextBoxColumn";
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            // 
-            // mtsDataGridViewTextBoxColumn
-            // 
-            this.mtsDataGridViewTextBoxColumn.DataPropertyName = "Mts";
-            this.mtsDataGridViewTextBoxColumn.HeaderText = "Mts";
-            this.mtsDataGridViewTextBoxColumn.Name = "mtsDataGridViewTextBoxColumn";
-            // 
-            // rateDataGridViewTextBoxColumn
-            // 
-            this.rateDataGridViewTextBoxColumn.DataPropertyName = "Rate";
-            this.rateDataGridViewTextBoxColumn.HeaderText = "Rate";
-            this.rateDataGridViewTextBoxColumn.Name = "rateDataGridViewTextBoxColumn";
-            // 
-            // RateWithoutTax
-            // 
-            this.RateWithoutTax.DataPropertyName = "RateWithoutTax";
-            this.RateWithoutTax.HeaderText = "RateWithoutTax";
-            this.RateWithoutTax.Name = "RateWithoutTax";
-            this.RateWithoutTax.ReadOnly = true;
-            this.RateWithoutTax.Visible = false;
-            // 
-            // totalDataGridViewTextBoxColumn
-            // 
-            this.totalDataGridViewTextBoxColumn.DataPropertyName = "Total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
-            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
-            this.totalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Name = "Delete";
-            this.Delete.Text = "Delete";
-            this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // saleIdDataGridViewTextBoxColumn
-            // 
-            this.saleIdDataGridViewTextBoxColumn.DataPropertyName = "SaleId";
-            this.saleIdDataGridViewTextBoxColumn.HeaderText = "SaleId";
-            this.saleIdDataGridViewTextBoxColumn.Name = "saleIdDataGridViewTextBoxColumn";
-            this.saleIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // Select
-            // 
-            this.Select.HeaderText = ".";
-            this.Select.Name = "Select";
-            this.Select.Width = 40;
+            this.button10.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(1132, 12);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(117, 48);
+            this.button10.TabIndex = 82;
+            this.button10.Text = "Cash Bill";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // AddInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1296, 737);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.comboBox3);
@@ -1007,5 +1020,6 @@ namespace GST_InvoiceApplication
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn saleIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
+        private System.Windows.Forms.Button button10;
     }
 }

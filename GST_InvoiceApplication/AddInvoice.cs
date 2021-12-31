@@ -225,6 +225,84 @@ namespace GST_InvoiceApplication
 
 
         }
+
+        public AddInvoice(bool isCashBill)
+        {
+            string key = ConfigurationManager.AppSettings["Key"];
+            DateTime dt;
+            if (DateTime.TryParseExact((Convert.ToDouble(key) / 8).ToString(), "ddMMyyyy", CultureInfo.InvariantCulture,
+                                 DateTimeStyles.None, out dt))
+            {
+                if (dt > DateTime.Now)
+                { }
+                else
+                { return; }
+            }
+            else
+            { return; }
+
+            InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            LoadCustomerData();
+            LoadCompanyData();
+            searchInv1 = null;
+
+            //CheckBox checkbox = new CheckBox();
+            headerCheckBox.Size = new System.Drawing.Size(15, 15);
+            headerCheckBox.BackColor = Color.Transparent;
+
+            // Reset properties
+            headerCheckBox.Padding = new Padding(0);
+            headerCheckBox.Margin = new Padding(0);
+            headerCheckBox.Text = "";
+
+            // Add checkbox to datagrid cell
+            dataGridView2.Controls.Add(headerCheckBox);
+            DataGridViewHeaderCell header = dataGridView2.Columns[12].HeaderCell;
+            headerCheckBox.Location = new Point(
+                1215,
+                5
+            );
+
+            headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
+            textBox16.Text = textBox17.Text = (_defaultTax / 2).ToString();
+            ChangeCasing();
+
+            if (isCashBill)
+            {
+                string sql = "select * from CompanyData where DefaultCashBill = 'True'";
+                var ds = Functions.RunSelectSql(sql);
+                DataRow dr = ds.Tables[0].Rows[0];
+
+                CompanyDetails currentCompany = new CompanyDetails();
+                currentCompany.CompanyID = Convert.ToInt32(dr["ID"]);
+                currentCompany.CompanyName = dr["CompanyName"].ToString();
+                comboBox1.SelectedValue = currentCompany.CompanyID;
+
+                currentCompany.Address = dr["Address"].ToString();
+                currentCompany.PhoneNumbers = dr["PhoneNo"].ToString();
+                currentCompany.GSTIN = dr["GSTIN"].ToString();
+                currentCompany.IsGSTApplicable = Convert.ToBoolean(dr["IsGSTApplicable"]);
+                currentCompany.GSTIN = dr["GSTIN"].ToString();
+                currentCompany.PANCard = dr["PANCard"].ToString();
+                currentCompany.Aadhaar = dr["Aadhaar"].ToString();
+                currentCompany.PropriterName = dr["PropriterName"].ToString();
+                currentCompany.BankName = dr["BankName"].ToString();
+                currentCompany.BankAccNo = dr["BankAccNo"].ToString();
+                currentCompany.BankBranchAddress = dr["BankBranchAddress"].ToString();
+                currentCompany.IFSCCode = dr["IFSCCode"].ToString();
+                currentCompany.BOAddress = dr["BOAddress"].ToString();
+                currentCompany.BillNo = Convert.ToInt32(dr["BillNo"]);
+                currentCompany.BillDate = Convert.ToDateTime(dr["BillDate"]);
+                currentCompany.BillPrefix = dr["BillPrefix"].ToString();
+                currentCompany.DefaultCashBill = Convert.ToBoolean(dr["DefaultCashBill"]);
+                currentCompany.ThermalPrinter = Convert.ToBoolean(dr["ThermalPrinter"]);
+                currentCompany.DefaultPrinter = dr["DefaultPrinter"].ToString();
+
+                _selectedCompany = currentCompany;
+
+            }
+        }
         private void ChangeCasing()
         {
             textBox1.CharacterCasing = CharacterCasing.Upper;
@@ -667,9 +745,11 @@ namespace GST_InvoiceApplication
             int column = dataGridView2.CurrentCell.ColumnIndex;
             if (column == 0 )
             {
-                SendKeys.Send("{Up}");
-                SendKeys.Send("{Right}");
-                if (dataGridView2.CurrentRow.Cells[0].Value != null && dataGridView2.CurrentRow.Cells[0].Value.ToString().Length > 0 && ConfigurationManager.AppSettings["PricePredictionEnabled"] == "true")
+                
+                    //SendKeys.Send("{Up}");
+                    //SendKeys.Send("{Right}");
+                
+                    if (dataGridView2.CurrentRow.Cells[0].Value != null && dataGridView2.CurrentRow.Cells[0].Value.ToString().Length > 0 && ConfigurationManager.AppSettings["PricePredictionEnabled"] == "true")
                     dataGridView2.CurrentRow.Cells[1].Value = getCustomerPrice(dataGridView2.CurrentRow.Cells[0].Value.ToString());
 
                 dataGridView2.CurrentRow.Cells[3].Value = dataGridView2.CurrentRow.Cells[0].Value!=null?   getProductHSN(dataGridView2.CurrentRow.Cells[0].Value.ToString()):"";
@@ -2203,11 +2283,11 @@ namespace GST_InvoiceApplication
 
         private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter && notlastColumn) //if not last column move to nex
-            {
-                SendKeys.Send("{Up}");
-                SendKeys.Send("{Right}");
-            }
+            //if (e.KeyCode == Keys.Enter && notlastColumn) //if not last column move to nex
+            //{
+            //    SendKeys.Send("{Up}");
+            //    SendKeys.Send("{Right}");
+            //}
             //else if (e.KeyCode == Keys.Enter)
             //{
             //    SendKeys.Send("{Home}");//go to first column
@@ -2573,6 +2653,15 @@ namespace GST_InvoiceApplication
         private void textBox22_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !(char.IsDigit(e.KeyChar) || e.KeyChar == '\b');
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            
+            this.Hide();
+            var form2 = new AddInvoice(true);
+            form2.Closed += (s, args) => this.Close();
+            form2.Show();
         }
     }
 }

@@ -11,7 +11,7 @@
                   <TextRun>
                     <Value>=Parameters!CompanyName.Value</Value>
                     <Style>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>

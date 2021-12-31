@@ -566,6 +566,7 @@ namespace GST_InvoiceApplication
         }
         private string isVarientHigh(string previousPrice, string currentPrice)
         {
+            return false.ToString();
             bool value = false;
             value = string.IsNullOrEmpty(previousPrice) || string.IsNullOrEmpty(currentPrice) ? false : Math.Abs((((Convert.ToDouble(previousPrice) - Convert.ToDouble(currentPrice)) / Math.Abs(Convert.ToDouble(previousPrice))) * 100)) > 10 ? true : false;
 
