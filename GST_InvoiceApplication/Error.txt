@@ -378,3 +378,45 @@ Date : 05-12-2021 15:07:33
 System.NullReferenceException
 Message : Object reference not set to an instance of an object.
 StackTrace :    at GST_InvoiceApplication.TallyUtility.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling\GST_InvoiceApplication\GST_InvoiceApplication\TallyUtility.cs:line 305
+-----------------------------------------------------------------------------
+Date : 31-12-2021 16:20:06
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329
+-----------------------------------------------------------------------------
+Date : 31-12-2021 16:24:24
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329
+-----------------------------------------------------------------------------
+Date : 31-12-2021 16:25:04
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329
+-----------------------------------------------------------------------------
+Date : 04-01-2022 19:53:08
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329
+-----------------------------------------------------------------------------
+Date : 04-01-2022 20:05:09
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329
+-----------------------------------------------------------------------------
+Date : 04-01-2022 20:07:22
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329
+-----------------------------------------------------------------------------
+Date : 04-01-2022 20:07:56
+
+System.NullReferenceException
+Message : Object reference not set to an instance of an object.
+StackTrace :    at GST_InvoiceApplication.SetupCompany.doDataBackup() in C:\Users\Sairam\source\repos\cravikumar\GSTInvoiceBilling - Roopesh\GST_InvoiceApplication\GST_InvoiceApplication\SetupCompany.cs:line 329

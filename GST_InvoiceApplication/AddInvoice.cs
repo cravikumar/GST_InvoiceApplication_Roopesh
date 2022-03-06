@@ -19,6 +19,7 @@ namespace GST_InvoiceApplication
         CheckBox headerCheckBox = new CheckBox();
         //AutoComplete(ComboBox cb, System.Windows.Forms.KeyPressEventArgs e, bool blnLimitToList);
         public CompanyDetails _selectedCompany;
+        public int _selectedCustomer;
         InvoiceDetails _savedInvoice;
         public int publicSaleId;
         bool notlastColumn = true; //class level variable--- to check either last column is reached or not
@@ -85,12 +86,23 @@ namespace GST_InvoiceApplication
 
         private string getCustomerPrice(string ProductName)
         {
-            string sql = "Select top 1 Price from ProductMaster where ProductName='" + ProductName + "'";
-            DataSet ds = Functions.RunSelectSql(sql);
-            foreach (DataRow dr in ds.Tables[0].Rows)
-                return dr["Price"].ToString();
+            string result = "";
+            if (_selectedCustomer > 0)
+            {
+                string sql = "Select top 1 Price from ProductMaster where ProductName='" + ProductName + "' and CustomerID ="+_selectedCustomer+" order by ID desc";
+                DataSet ds = Functions.RunSelectSql(sql);
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                    result= "CU--" +dr["Price"].ToString();
+            }
+             if(string.IsNullOrEmpty(result))
+            {
+                string sql = "Select top 1 Price from ProductMaster where ProductName='" + ProductName + "' order by ID desc";
+                DataSet ds = Functions.RunSelectSql(sql);
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                    result = dr["Price"].ToString();
+            }
 
-            return "";
+            return result;
         }
 
         private string getProductHSN(string ProductName)
@@ -107,19 +119,38 @@ namespace GST_InvoiceApplication
         private void updatePriceMaster(string ProductName, string Price, string HsnCode)
         {
             try {
-                if (!string.IsNullOrEmpty(getCustomerPrice(ProductName)))
+                if (_selectedCustomer>0 && getCustomerPrice(ProductName).Contains("CU"))
                 {
-                    string query = "Update ProductMaster Set Price = '" + Price + "',HsnCode = '"+HsnCode+"' where ProductName = '" + ProductName+"';";
+                    string query = "Update ProductMaster Set Price = '" + Price + "',HsnCode = '"+HsnCode+"' where ProductName = '" + ProductName+ "' and CustomerID =" + _selectedCustomer + ";";
+                    Functions.RunExecuteNonQuery(query);
+
+                }
+                else if (_selectedCustomer > 0 && !string.IsNullOrEmpty(getCustomerPrice(ProductName)))
+                {
+                    string sql = "insert into ProductMaster " +
+                                "(ProductName,Price,HSNCode,CustomerID) values " +
+                                " ('" + ProductName.Replace("'", "") +
+                                 "','" + Price +
+                                   "','" + HsnCode + "'," + _selectedCustomer +
+                                   ");";
+
+                    Functions.RunExecuteNonQuery(sql);
+
+                }
+                else if (!string.IsNullOrEmpty(getCustomerPrice(ProductName)))
+                {
+                    string query = "Update ProductMaster Set Price = '" + Price + "',HsnCode = '" + HsnCode + "' where ProductName = '" + ProductName + "';";
                     Functions.RunExecuteNonQuery(query);
 
                 }
                 else
                 {
                     string sql = "insert into ProductMaster " +
-                                "(ProductName,Price,HSNCode) values " +
+                                "(ProductName,Price,HSNCode,CustomerID) values " +
                                 " ('" + ProductName.Replace("'", "") +
                                  "','" + Price +
-                                   "','" + HsnCode + "');";
+                                   "','" + HsnCode + "',"+_selectedCustomer+
+                                   ");";
 
                     Functions.RunExecuteNonQuery(sql);
  
@@ -201,7 +232,7 @@ namespace GST_InvoiceApplication
             LoadCustomerData();
             LoadCompanyData();
             searchInv1 = null;
-
+            _selectedCustomer = 0;
             //CheckBox checkbox = new CheckBox();
             headerCheckBox.Size = new System.Drawing.Size(15, 15);
             headerCheckBox.BackColor = Color.Transparent;
@@ -246,7 +277,7 @@ namespace GST_InvoiceApplication
             LoadCustomerData();
             LoadCompanyData();
             searchInv1 = null;
-
+            _selectedCustomer = 0;
             //CheckBox checkbox = new CheckBox();
             headerCheckBox.Size = new System.Drawing.Size(15, 15);
             headerCheckBox.BackColor = Color.Transparent;
@@ -537,8 +568,8 @@ namespace GST_InvoiceApplication
         {
             if (comboBox2.SelectedIndex < 1)
                 return;
-
-            string sql = "select * from customerdata where ID = " + comboBox2.SelectedValue;
+            _selectedCustomer = Convert.ToInt32(comboBox2.SelectedValue);
+             string sql = "select * from customerdata where ID = " + comboBox2.SelectedValue;
             var ds = Functions.RunSelectSql(sql);
 
             textBox1.Text = ds.Tables[0].Rows[0]["CustomerName"].ToString();

@@ -237,9 +237,9 @@ namespace GST_InvoiceApplication
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(936, 644);
+            this.button1.Location = new System.Drawing.Point(1165, 573);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 23);
+            this.button1.Size = new System.Drawing.Size(111, 23);
             this.button1.TabIndex = 23;
             this.button1.Text = "SAVE BILL";
             this.button1.UseVisualStyleBackColor = true;
@@ -395,7 +395,7 @@ namespace GST_InvoiceApplication
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(649, 561);
+            this.label11.Location = new System.Drawing.Point(457, 545);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(131, 13);
             this.label11.TabIndex = 33;
@@ -404,7 +404,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(797, 558);
+            this.textBox7.Location = new System.Drawing.Point(605, 542);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(22, 20);
@@ -414,7 +414,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(1085, 516);
+            this.textBox8.Location = new System.Drawing.Point(978, 510);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(164, 20);
@@ -424,7 +424,7 @@ namespace GST_InvoiceApplication
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(973, 516);
+            this.label12.Location = new System.Drawing.Point(866, 510);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 13);
             this.label12.TabIndex = 35;
@@ -432,7 +432,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(1085, 538);
+            this.textBox9.Location = new System.Drawing.Point(978, 532);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(164, 20);
@@ -442,7 +442,7 @@ namespace GST_InvoiceApplication
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(976, 538);
+            this.label13.Location = new System.Drawing.Point(869, 532);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(39, 13);
             this.label13.TabIndex = 37;
@@ -451,7 +451,7 @@ namespace GST_InvoiceApplication
             // textBox10
             // 
             this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(1085, 608);
+            this.textBox10.Location = new System.Drawing.Point(978, 602);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(164, 32);
@@ -462,7 +462,7 @@ namespace GST_InvoiceApplication
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(927, 608);
+            this.label14.Location = new System.Drawing.Point(820, 602);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(152, 29);
             this.label14.TabIndex = 39;
@@ -470,7 +470,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(1085, 561);
+            this.textBox11.Location = new System.Drawing.Point(978, 555);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(164, 20);
@@ -480,7 +480,7 @@ namespace GST_InvoiceApplication
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(980, 564);
+            this.label15.Location = new System.Drawing.Point(873, 558);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 13);
             this.label15.TabIndex = 42;
@@ -547,7 +547,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox13
             // 
-            this.textBox13.Location = new System.Drawing.Point(781, 529);
+            this.textBox13.Location = new System.Drawing.Point(589, 513);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(26, 20);
@@ -558,7 +558,7 @@ namespace GST_InvoiceApplication
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(709, 532);
+            this.label17.Location = new System.Drawing.Point(517, 516);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 13);
             this.label17.TabIndex = 50;
@@ -567,7 +567,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(781, 584);
+            this.textBox14.Location = new System.Drawing.Point(589, 568);
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
             this.textBox14.Size = new System.Drawing.Size(26, 20);
@@ -578,7 +578,7 @@ namespace GST_InvoiceApplication
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(642, 587);
+            this.label18.Location = new System.Drawing.Point(450, 571);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(122, 13);
             this.label18.TabIndex = 52;
@@ -587,7 +587,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(1085, 586);
+            this.textBox15.Location = new System.Drawing.Point(978, 580);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(164, 20);
             this.textBox15.TabIndex = 55;
@@ -597,7 +597,7 @@ namespace GST_InvoiceApplication
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(996, 589);
+            this.label19.Location = new System.Drawing.Point(889, 583);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(72, 13);
             this.label19.TabIndex = 54;
@@ -605,7 +605,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox16
             // 
-            this.textBox16.Location = new System.Drawing.Point(1021, 513);
+            this.textBox16.Location = new System.Drawing.Point(914, 507);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(31, 20);
             this.textBox16.TabIndex = 56;
@@ -614,7 +614,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(1021, 538);
+            this.textBox17.Location = new System.Drawing.Point(914, 532);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(31, 20);
             this.textBox17.TabIndex = 57;
@@ -623,7 +623,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox18
             // 
-            this.textBox18.Location = new System.Drawing.Point(1021, 561);
+            this.textBox18.Location = new System.Drawing.Point(914, 555);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(31, 20);
             this.textBox18.TabIndex = 58;
@@ -633,7 +633,7 @@ namespace GST_InvoiceApplication
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(1053, 512);
+            this.label20.Location = new System.Drawing.Point(946, 506);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(15, 13);
             this.label20.TabIndex = 59;
@@ -642,7 +642,7 @@ namespace GST_InvoiceApplication
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(1053, 538);
+            this.label21.Location = new System.Drawing.Point(946, 532);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(15, 13);
             this.label21.TabIndex = 60;
@@ -651,7 +651,7 @@ namespace GST_InvoiceApplication
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(1053, 564);
+            this.label22.Location = new System.Drawing.Point(946, 558);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(15, 13);
             this.label22.TabIndex = 61;
@@ -705,9 +705,9 @@ namespace GST_InvoiceApplication
             // button5
             // 
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(1111, 644);
+            this.button5.Location = new System.Drawing.Point(1165, 513);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(132, 23);
+            this.button5.Size = new System.Drawing.Size(111, 23);
             this.button5.TabIndex = 67;
             this.button5.Text = "UPDATE BILL";
             this.button5.UseVisualStyleBackColor = true;
@@ -735,7 +735,7 @@ namespace GST_InvoiceApplication
             // 
             // textBox20
             // 
-            this.textBox20.Location = new System.Drawing.Point(1085, 490);
+            this.textBox20.Location = new System.Drawing.Point(978, 484);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
             this.textBox20.Size = new System.Drawing.Size(164, 20);
@@ -745,7 +745,7 @@ namespace GST_InvoiceApplication
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(1031, 493);
+            this.label25.Location = new System.Drawing.Point(924, 487);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(37, 13);
             this.label25.TabIndex = 70;
@@ -753,9 +753,9 @@ namespace GST_InvoiceApplication
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(936, 673);
+            this.button2.Location = new System.Drawing.Point(1165, 606);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 23);
+            this.button2.Size = new System.Drawing.Size(111, 23);
             this.button2.TabIndex = 72;
             this.button2.Text = "Save and Print";
             this.button2.UseVisualStyleBackColor = true;
@@ -764,9 +764,9 @@ namespace GST_InvoiceApplication
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(1111, 673);
+            this.button7.Location = new System.Drawing.Point(1165, 542);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(132, 23);
+            this.button7.Size = new System.Drawing.Size(111, 23);
             this.button7.TabIndex = 73;
             this.button7.Text = "Update and Print";
             this.button7.UseVisualStyleBackColor = true;
@@ -780,6 +780,7 @@ namespace GST_InvoiceApplication
             this.label26.Size = new System.Drawing.Size(51, 13);
             this.label26.TabIndex = 74;
             this.label26.Text = "Company";
+            this.label26.Visible = false;
             // 
             // textBox22
             // 
@@ -788,6 +789,7 @@ namespace GST_InvoiceApplication
             this.textBox22.Size = new System.Drawing.Size(121, 20);
             this.textBox22.TabIndex = 77;
             this.textBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBox22.Visible = false;
             this.textBox22.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox22_KeyPress);
             // 
             // label27
@@ -798,6 +800,7 @@ namespace GST_InvoiceApplication
             this.label27.Size = new System.Drawing.Size(34, 13);
             this.label27.TabIndex = 76;
             this.label27.Text = "BillNo";
+            this.label27.Visible = false;
             // 
             // button8
             // 
@@ -807,6 +810,7 @@ namespace GST_InvoiceApplication
             this.button8.TabIndex = 78;
             this.button8.Text = "CopySelected";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Visible = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // comboBox3
@@ -819,6 +823,7 @@ namespace GST_InvoiceApplication
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 79;
+            this.comboBox3.Visible = false;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // button9
