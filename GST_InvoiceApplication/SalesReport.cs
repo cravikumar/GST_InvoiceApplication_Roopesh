@@ -172,6 +172,8 @@ namespace GST_InvoiceApplication
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(textBox1.Text))
+                textBox1.Text = "";
             //progressBar1 = new ProgressBar();
             this.progressBar1.Minimum = 0;
             this.progressBar1.Maximum = dataGridView1.Rows.Count+20;

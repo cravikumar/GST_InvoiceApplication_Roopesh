@@ -94,9 +94,9 @@ namespace GST_InvoiceApplication
                 foreach (DataRow dr in ds.Tables[0].Rows)
                     result= "CU--" +dr["Price"].ToString();
             }
-             if(string.IsNullOrEmpty(result))
+            if(string.IsNullOrEmpty(result))
             {
-                string sql = "Select top 1 Price from ProductMaster where ProductName='" + ProductName + "' order by ID desc";
+                string sql = "Select top 1 Price from ProductMaster where ProductName='" + ProductName + "' AND CustomerID is null order by ID desc";
                 DataSet ds = Functions.RunSelectSql(sql);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                     result = dr["Price"].ToString();
@@ -115,7 +115,7 @@ namespace GST_InvoiceApplication
             return "";
         }
 
-
+        
         private void updatePriceMaster(string ProductName, string Price, string HsnCode)
         {
             try {
@@ -1138,7 +1138,7 @@ namespace GST_InvoiceApplication
             inv.CustomerAddress = textBox2.Text;
             inv.CustomerPanAadhaar = textBox4.Text;
 
-            if (inv.CustomerId < 1)
+            if (inv.CustomerId < 1 && (inv.CustomerName.Length> 0 || inv.CustomerAddress.Length>0))
             {
                 string query = "insert into CustomerData " +
                 "(CustomerName,CustomerType,Address,GSTIN,Aadhaar,PanNumber,MobilePhone1,MobilePhone2,OfficePhone1," +
@@ -2653,18 +2653,7 @@ namespace GST_InvoiceApplication
             new InvoicePrint(searchInv1, _selectedCompany).Show();
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox2.Checked)
-            {
-                textBox12.Text = textBox12.Text + "-"+ Functions.getPreviousYear();
-            }
-            else
-            {
-                textBox12.Text = textBox12.Text.Split('-')[0];
-            }
-        }
-
+        
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
 

@@ -107,7 +107,7 @@ namespace Invoice.DataAccess
 
         public static bool isCurrentFinancialYear(DateTime invDate)
         {
-
+            return true;
             int year = DateTime.Now.Year;
             int month = DateTime.Now.Month;
 

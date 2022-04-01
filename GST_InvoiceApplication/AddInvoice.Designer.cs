@@ -109,7 +109,6 @@ namespace GST_InvoiceApplication
             this.button8 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button9 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceProductsBindingSource)).BeginInit();
@@ -307,6 +306,7 @@ namespace GST_InvoiceApplication
             this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
             this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
             this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            this.productNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.productNameDataGridViewTextBoxColumn.Width = 400;
             // 
             // ActualPrice
@@ -837,17 +837,6 @@ namespace GST_InvoiceApplication
             this.button9.Visible = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(769, 54);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(50, 17);
-            this.checkBox2.TabIndex = 81;
-            this.checkBox2.Text = "2020";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -865,7 +854,6 @@ namespace GST_InvoiceApplication
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1296, 737);
             this.Controls.Add(this.button10);
-            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.button8);
@@ -1011,7 +999,7 @@ namespace GST_InvoiceApplication
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActualPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn mtsDescriptionDataGridViewTextBoxColumn;
@@ -1025,6 +1013,5 @@ namespace GST_InvoiceApplication
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn saleIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Select;
-        private System.Windows.Forms.Button button10;
     }
 }
