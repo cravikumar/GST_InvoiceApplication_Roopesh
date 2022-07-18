@@ -844,7 +844,7 @@ namespace GST_InvoiceApplication
                 dataGridView2.CurrentRow.Cells[7].Value = priceWithoutGST;
 
 
-                if (price > 0 && qnt > 0 && priceWithoutGST>0)
+                if ( qnt > 0 )
                 {
                     double rowTotal = 0;
                     if (dataGridView2.CurrentRow.Cells[5].Value != null && !String.IsNullOrEmpty(dataGridView2.CurrentRow.Cells[5].Value.ToString()) && Convert.ToDouble(dataGridView2.CurrentRow.Cells[5].Value.ToString()) > 0)
@@ -1079,7 +1079,7 @@ namespace GST_InvoiceApplication
                             priceWithoutGST = price;// priceRound(price - (price * ((sgst + cgst) / (100 + sgst + cgst))), 2);
                         dataGridView2.Rows[i].Cells[7].Value = priceWithoutGST;
 
-                        if (price > 0 && qnt > 0 && priceWithoutGST>0)
+                        if (qnt > 0 )
                         {
                             double rowTotal = 0;
                             if (dataGridView2.Rows[i].Cells[5].Value != null && !String.IsNullOrEmpty(dataGridView2.Rows[i].Cells[5].Value.ToString()) && Convert.ToDouble(dataGridView2.Rows[i].Cells[5].Value.ToString()) > 0)
@@ -1707,7 +1707,7 @@ namespace GST_InvoiceApplication
 
             if (!char.IsControl(e.KeyChar)
                 && !char.IsDigit(e.KeyChar)
-                && e.KeyChar != '.')
+                && (e.KeyChar != '.')&&( e.KeyChar != '-'))
             {
                 e.Handled = true;
             }
@@ -1719,6 +1719,8 @@ namespace GST_InvoiceApplication
                 e.Handled = true;
 
             }
+
+            
         }
 
         private void button4_Click_1(object sender, EventArgs e)
