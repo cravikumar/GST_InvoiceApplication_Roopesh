@@ -1,5 +1,6 @@
 ﻿using Invoice.DataAccess;
 using Invoice.Models;
+using SergeUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -491,9 +492,14 @@ namespace GST_InvoiceApplication
                 userCache.Add(Convert.ToInt32(dr["ID"]), dr["CustomerName"].ToString() + " - " + dr["Address"].ToString());
 
             }
+
+
+            comboBox2.MatchingMethod = StringMatchingMethod.UseRegexs;
             comboBox2.DataSource = new BindingSource(userCache, null);
             comboBox2.DisplayMember = "Value";
             comboBox2.ValueMember = "Key";
+
+
         }
 
         public void LoadCompanyData()
@@ -2684,6 +2690,11 @@ namespace GST_InvoiceApplication
             var form2 = new AddInvoice(true);
             form2.Closed += (s, args) => this.Close();
             form2.Show();
+        }
+
+        private void autoCompleteTextbox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -151,6 +151,12 @@
     <Compile Include="AddInvoiceOld.Designer.cs">
       <DependentUpon>AddInvoiceOld.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoCompleteComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AutoCompleteTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GSTDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -330,6 +336,10 @@
     <ProjectReference Include="..\Invoice.Models\Invoice.Models.csproj">
       <Project>{c5f0328f-dc7f-4768-b752-0f0b76924bd1}</Project>
       <Name>Invoice.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SergeUtils\SergeUtils.csproj">
+      <Project>{25438301-ddf3-4efd-8c17-4aa3249cc9e0}</Project>
+      <Name>SergeUtils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
