@@ -2762,6 +2762,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+   <ReportParameter Name="Notes">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
     <ReportParameter Name="SGSTPer">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
