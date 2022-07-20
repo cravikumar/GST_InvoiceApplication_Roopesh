@@ -2,6 +2,7 @@
 using Invoice.Models;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Reporting.WinForms;
+using SergeUtils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,12 +26,14 @@ namespace GST_InvoiceApplication
         private static List<Stream> m_streams;
         private static int m_currentPageIndex = 0;
         private static int productCount = 0;
+        public int _selectedCustomer;
         public SalesReport()
         {
             this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
 
             LoadCompanyData();
+            LoadCustomerData();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -95,6 +98,26 @@ namespace GST_InvoiceApplication
             comboBox3.DisplayMember = "Value";
             comboBox3.ValueMember = "Key";
         }
+        private void LoadCustomerData()
+        {
+            string sql = "select * from customerdata Order by CustomerName ASC";
+            var ds = Functions.RunSelectSql(sql);
+            Dictionary<int, string> userCache = new Dictionary<int, string>();
+            userCache.Add(0, "--Select--");
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                userCache.Add(Convert.ToInt32(dr["ID"]), dr["CustomerName"].ToString() + " - " + dr["Address"].ToString());
+
+            }
+
+
+            comboBox2.MatchingMethod = StringMatchingMethod.UseRegexs;
+            comboBox2.DataSource = new BindingSource(userCache, null);
+            comboBox2.DisplayMember = "Value";
+            comboBox2.ValueMember = "Key";
+
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -126,9 +149,13 @@ namespace GST_InvoiceApplication
                 whereCondition = whereCondition+ " s.CompanyId =  " + Convert.ToInt32(comboBox3.SelectedValue) + " and";
             }
 
+            if (comboBox2.SelectedItem != null && Convert.ToInt32(comboBox2.SelectedValue.ToString()) >0)
+            {
+                whereCondition = whereCondition + " s.CustomerID =  " + Convert.ToInt32(comboBox3.SelectedValue) + " and";
+            }
 
 
-            if(!checkBox1.Checked)
+            if (!checkBox1.Checked)
              sql = "select " +
                 "C.CompanyName,C.GSTIN as CompanyGST,S.InvoiceId,S.InvoiceDate,S.CustomerName,S.CustomerGST,S.CustomerPanAadhaar as PANAadhar,S.StrTotalAfterDiscountOrBeforeTax as TotalAmount,S.StrSGST as SGST,S.StrCGST as CGST,S.StrIGST as IGST,S.StrTotalAfterTax as TotalAfterTax,S.StrRounded as RoundOff,S.StrTotalPayable as GrandTotal,S.IsPaid as IsPaid,C.ID as CompanyId " +
                 //"s.*,c.* "+

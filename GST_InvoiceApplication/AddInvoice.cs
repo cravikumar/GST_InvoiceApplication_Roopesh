@@ -1124,7 +1124,7 @@ namespace GST_InvoiceApplication
             inv.CompanyId = _selectedCompany.CompanyID;
             inv.InvoiceId = textBox12.Text;
             inv.InvoiceDate = dateTimePicker1.Value;
-
+            inv.Notes = richTextBox1.Text;
             inv.StrBillTotal = textBox20.Text;
             inv.StrDiscount = textBox13.Text;
             inv.StrTotalAfterDiscountOrBeforeTax = textBox7.Text;
@@ -1291,7 +1291,7 @@ namespace GST_InvoiceApplication
             }
 
             string query = "insert into SalesInvoiceDetail " +
-                "(CompanyId     ,     InvoiceId     ,    InvoiceDate    ,StrBillTotal,    StrDiscount    , StrTotalAfterDiscountOrBeforeTax ,StrSGST      ,StrCGST      ,StrIGST      , StrTotalAfterTax  ,    StrRounded     ,  StrTotalPayable  ,IsPaid       ,    CustomerId     ,   CustomerName    ,    CustomerGST    ,  CustomerMobile   ,  CustomerAddress  , CustomerPanAadhaar ,   StrTransport    ,StrLRNo      ,     CGSTValue     ,     SGSTValue     ,     IGSTValue,CreatedOn,ModifiedOn ) values" +
+                "(CompanyId     ,     InvoiceId     ,    InvoiceDate    ,StrBillTotal,    StrDiscount    , StrTotalAfterDiscountOrBeforeTax ,StrSGST      ,StrCGST      ,StrIGST      , StrTotalAfterTax  ,    StrRounded     ,  StrTotalPayable  ,IsPaid       ,    CustomerId     ,   CustomerName    ,    CustomerGST    ,  CustomerMobile   ,  CustomerAddress  , CustomerPanAadhaar ,   StrTransport    ,StrLRNo      ,     CGSTValue     ,     SGSTValue     ,     IGSTValue,CreatedOn,ModifiedOn,Notes ) values" +
                 " ('" + inv.CompanyId +
                 "','" + inv.InvoiceId +
                 "','" + inv.InvoiceDate +
@@ -1318,6 +1318,7 @@ namespace GST_InvoiceApplication
                 "','" + inv.IGSTValue +
                 "','" + DateTime.Now +
                 "','" + DateTime.Now +
+                "','" + inv.Notes.Replace("'", "") +
                 "')";
             inv.SaleId = Functions.RunExecuteScalarSql_getIdentity(query);
             return inv.SaleId;
@@ -1566,6 +1567,7 @@ namespace GST_InvoiceApplication
             }
             inv.InvoiceDate = dateTimePicker1.Value = Convert.ToDateTime(dr["InvoiceDate"]);
             inv.InvoiceId = textBox12.Text = dr["InvoiceId"].ToString();
+            inv.Notes = richTextBox1.Text = dr["Notes"].ToString();
             button5.Enabled = true;//Update
             button7.Enabled = true;//Update
 
@@ -1752,39 +1754,7 @@ namespace GST_InvoiceApplication
 
             updateTotalBill();
 
-            SetTextChanged(sender, e);
-        }
-
-        private void comboBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            comboBox2.DroppedDown = false;
-            return;
-            string name = string.Format("{0}{1}", comboBox2.Text, e.KeyChar.ToString()); //join previous text and new pressed char
-
-            if (name.Contains("Select"))
-                return;
-
-            string sql = "select * from customerdata where customerName like '%" + name + "%'";
-            var ds = Functions.RunSelectSql(sql);
-            SortedDictionary<int, string> userCache = new SortedDictionary<int, string>();
-            // userCache.Add(0, "--Select--");
-
-            //ds.Tables[0].DefaultView.Sort = "CustomerName ASC";
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                userCache.Add(Convert.ToInt32(dr["ID"]), dr["CustomerName"].ToString() + " - " + dr["Address"].ToString());
-
-            }
-            comboBox2.DataSource = null;
-            comboBox2.DataSource = new BindingSource(userCache, null);
-            comboBox2.DisplayMember = "Value";
-            comboBox2.ValueMember = "Key";
-
-            //MessageBox.Show(name);
-
-            //comboBox1.DataSource = null;
-            //comboBox1.DataSource = filteredTable.DefaultView;
-            //comboBox1.DisplayMember = "FieldName";
+            //SetTextChanged(sender, e);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1800,6 +1770,7 @@ namespace GST_InvoiceApplication
             inv.CompanyId = _selectedCompany.CompanyID;
             inv.InvoiceId = textBox12.Text;
             inv.InvoiceDate = dateTimePicker1.Value;
+            inv.Notes = richTextBox1.Text;
 
             inv.StrBillTotal = textBox20.Text;
             inv.StrDiscount = textBox13.Text;
@@ -2037,7 +2008,7 @@ namespace GST_InvoiceApplication
 
         private void textBox17_TextChanged(object sender, EventArgs e)
         {
-            SetTextChanged(sender, e);
+            //SetTextChanged(sender, e);
         }
         private void dgvUserDetails_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
@@ -2695,6 +2666,24 @@ namespace GST_InvoiceApplication
         private void autoCompleteTextbox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\'')
+                e.Handled = true;
+
+            if (e.KeyChar == '\r')
+                e.Handled = true;
+
+            if (richTextBox1.Lines.Length > 2)
+            {
+                List<string> Lines = richTextBox1.Lines.ToList();
+                int lineToRemove = 2;
+                Lines.RemoveAt(lineToRemove);
+                richTextBox1.Lines = Lines.ToArray();
+                e.Handled = true;
+            }
         }
     }
 }

@@ -2328,9 +2328,9 @@
               </Style>
             </Line>
             <Line Name="Line15">
-              <Top>0.46465in</Top>
+              <Top>0.06944in</Top>
               <Left>0.22909in</Left>
-              <Height>1.59671in</Height>
+              <Height>1.99192in</Height>
               <Width>0in</Width>
               <ZIndex>8</ZIndex>
               <Style>
@@ -2494,9 +2494,10 @@
                 </Border>
               </Style>
             </Line>
-            <Line Name="Line26">
+            
+            <Line Name="Line27">
               <Top>0.06944in</Top>
-              <Left>0.24298in</Left>
+              <Left>7.22534in</Left>
               <Height>0.39521in</Height>
               <Width>0in</Width>
               <ZIndex>18</ZIndex>
@@ -2506,20 +2507,8 @@
                 </Border>
               </Style>
             </Line>
-            <Line Name="Line27">
-              <Top>0.06944in</Top>
-              <Left>7.22534in</Left>
-              <Height>0.39521in</Height>
-              <Width>0in</Width>
-              <ZIndex>19</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
             <Textbox Name="Textbox57">
-              <CanGrow>true</CanGrow>
+
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
@@ -2547,7 +2536,7 @@
               <Left>0.36996in</Left>
               <Height>0.29798in</Height>
               <Width>6.65869in</Width>
-              <ZIndex>20</ZIndex>
+              <ZIndex>19</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

@@ -27,6 +27,7 @@ namespace Invoice.Models
         public bool IsPaid { get; set; }
         public List<InvoiceProducts> Products { get; set; }
         public string CustomerName { get; set; }
+        public string Notes { get; set; }
         public string CustomerGST { get; set; }
         public string CustomerMobile { get; set; }
         public string CustomerAddress { get; set; }

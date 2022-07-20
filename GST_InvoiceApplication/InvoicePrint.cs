@@ -63,6 +63,8 @@ namespace GST_InvoiceApplication
             {
                 originalInvoicePath = "\\InvoiceOriginal.rdlc";
             }
+            else if(!string.IsNullOrEmpty(_currentInvoice.Notes) && _currentInvoice.Notes.Trim().Length>0)
+                originalInvoicePath = "\\InvoiceOriginal_WithNotesV2.rdlc";
             else
                 originalInvoicePath = "\\InvoiceOriginalV2.rdlc";
 
@@ -142,6 +144,7 @@ namespace GST_InvoiceApplication
 
             ReportParameter p29 = new ReportParameter("BOAddress", string.IsNullOrEmpty(_currentCompany.BOAddress) ? "." : _currentCompany.BOAddress);
             ReportParameter p30 = new ReportParameter("Totalinwords", "-");
+            ReportParameter p32 = new ReportParameter("Notes", string.IsNullOrEmpty(_currentInvoice.Notes) ? "-" : _currentInvoice.Notes);
 
             report.SetParameters(new ReportParameter[] { 
                 p1, p2, p3, p4, p5,
@@ -149,7 +152,7 @@ namespace GST_InvoiceApplication
                 p11, p12, p13, p14, p15,
                 p16, p17, p18, p19, p20,
                 p21, p22, p23, p24, p25,
-                p26,p27,p28, p29, p30,p31
+                p26,p27,p28, p29, p30,p31,p32
             });
 
             PrintToPrinter(report);
@@ -237,6 +240,7 @@ namespace GST_InvoiceApplication
 
             ReportParameter p29 = new ReportParameter("BOAddress", string.IsNullOrEmpty(_currentCompany.BOAddress) ? "." : _currentCompany.BOAddress);
             ReportParameter p30 = new ReportParameter("Totalinwords", "-");
+            ReportParameter p32 = new ReportParameter("Notes", string.IsNullOrEmpty(_currentInvoice.Notes) ? "-" : _currentInvoice.Notes);
 
             report.SetParameters(new ReportParameter[] { 
                 p1, p2, p3, p4, p5,
@@ -244,7 +248,7 @@ namespace GST_InvoiceApplication
                 p11, p12, p13, p14, p15,
                 p16, p17, p18, p19, p20,
                 p21, p22, p23, p24, p25,
-                p26,p27,p28, p29, p30,p31
+                p26,p27,p28, p29, p30,p31,p32
             });
 
             PrintToPrinter(report);
@@ -470,6 +474,8 @@ namespace GST_InvoiceApplication
             {
                 originalInvoicePath = "\\InvoiceOriginal.rdlc";
             }
+            else if (!string.IsNullOrEmpty(_currentInvoice.Notes) && _currentInvoice.Notes.Trim().Length > 0)
+                originalInvoicePath = "\\InvoiceOriginal_WithNotesV2.rdlc";
             else
                 originalInvoicePath = "\\InvoiceOriginalV2.rdlc";
 
@@ -549,14 +555,15 @@ namespace GST_InvoiceApplication
 
             ReportParameter p29 = new ReportParameter("BOAddress", string.IsNullOrEmpty(_currentCompany.BOAddress) ? "." : _currentCompany.BOAddress);
             ReportParameter p30 = new ReportParameter("Totalinwords", "-");
-            
+            ReportParameter p32 = new ReportParameter("Notes", string.IsNullOrEmpty(_currentInvoice.Notes)?"-": _currentInvoice.Notes);
+
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { 
                 p1, p2, p3, p4, p5,
                 p6, p7, p8, p9, p10,
                 p11, p12, p13, p14, p15,
                 p16, p17, p18, p19, p20,
                 p21, p22, p23, p24, p25,
-                p26,p27,p28, p29, p30,p31
+                p26,p27,p28, p29, p30,p31,p32
             }); 
 
             this.reportViewer1.RefreshReport();

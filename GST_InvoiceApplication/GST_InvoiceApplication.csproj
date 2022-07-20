@@ -243,7 +243,10 @@
     <EmbeddedResource Include="HSNSalesReportNew.resx">
       <DependentUpon>HSNSalesReportNew.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceOriginalNoGST-A4.rdlc" />
+    <EmbeddedResource Include="InvoiceOriginalNoGST-Legal.rdlc" />
     <EmbeddedResource Include="InvoiceOriginalV2.rdlc" />
+    <EmbeddedResource Include="InvoiceOriginal_WithNotesV2.rdlc" />
     <EmbeddedResource Include="ProductSetup.resx">
       <DependentUpon>ProductSetup.cs</DependentUpon>
     </EmbeddedResource>
