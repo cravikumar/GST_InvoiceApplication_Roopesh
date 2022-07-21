@@ -1318,7 +1318,7 @@ namespace GST_InvoiceApplication
                 "','" + inv.IGSTValue +
                 "','" + DateTime.Now +
                 "','" + DateTime.Now +
-                "','" + inv.Notes.Replace("'", "") +
+                "','" + (string.IsNullOrEmpty(inv.Notes)?"":inv.Notes.Replace("'", "")) +
                 "')";
             inv.SaleId = Functions.RunExecuteScalarSql_getIdentity(query);
             return inv.SaleId;
