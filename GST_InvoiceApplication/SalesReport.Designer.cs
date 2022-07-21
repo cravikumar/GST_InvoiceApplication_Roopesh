@@ -233,7 +233,7 @@ namespace GST_InvoiceApplication
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 89);
+            this.label5.Location = new System.Drawing.Point(231, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 84;
