@@ -2670,6 +2670,7 @@ namespace GST_InvoiceApplication
 
         private void richTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            e.KeyChar = Char.ToUpper(e.KeyChar);
             if (e.KeyChar == '\'')
                 e.Handled = true;
 

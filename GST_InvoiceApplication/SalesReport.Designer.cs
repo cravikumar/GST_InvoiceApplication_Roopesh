@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Invoice.DataAccess;
+using System;
 
 namespace GST_InvoiceApplication
 {
@@ -99,7 +100,7 @@ namespace GST_InvoiceApplication
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(551, 37);
+            this.button1.Location = new System.Drawing.Point(634, 37);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 13;
@@ -147,7 +148,7 @@ namespace GST_InvoiceApplication
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(646, 57);
+            this.checkBox1.Location = new System.Drawing.Point(729, 57);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(101, 17);
             this.checkBox1.TabIndex = 18;
@@ -207,12 +208,12 @@ namespace GST_InvoiceApplication
             "CASH BILL"});
             this.comboBox3.Location = new System.Drawing.Point(321, 54);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(183, 21);
+            this.comboBox3.Size = new System.Drawing.Size(286, 21);
             this.comboBox3.TabIndex = 80;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(551, 68);
+            this.button4.Location = new System.Drawing.Point(634, 68);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(89, 23);
             this.button4.TabIndex = 81;
@@ -225,7 +226,7 @@ namespace GST_InvoiceApplication
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(321, 86);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(183, 21);
+            this.comboBox2.Size = new System.Drawing.Size(286, 21);
             this.comboBox2.TabIndex = 85;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -275,8 +276,13 @@ namespace GST_InvoiceApplication
         {
             if (comboBox2.SelectedIndex < 1)
                 return;
-            _selectedCustomer = Convert.ToInt32(comboBox2.SelectedValue);
             
+
+            string sql = "select * from customerdata where ID = " + Convert.ToInt32(comboBox2.SelectedValue);
+            var ds = Functions.RunSelectSql(sql);
+
+            _selectedCustomer = ds.Tables[0].Rows[0]["CustomerName"].ToString();
+
         }
 
         #endregion

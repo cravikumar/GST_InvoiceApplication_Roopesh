@@ -83,8 +83,14 @@ namespace GST_InvoiceApplication
 
         private void ProductSetup_Load(object sender, EventArgs e)
         {
+            String sql = "Select Id,ProductName,Price,HSNCode from ProductMaster where " +
+                (string.IsNullOrEmpty(textBox1.Text) ? "1=1" : "ProductName like '%" + textBox1.Text + "%'") +
+                (string.IsNullOrEmpty(textBox2.Text) ? " and 1=1" : " and HSNCode like '%" + textBox2.Text + "%'");
+
+            DataSet ds = Functions.RunSelectSql(sql);
+            dataGridView1.DataSource = ds.Tables[0];
             // TODO: This line of code loads data into the 'gSTDataSet.ProductMaster' table. You can move, or remove it, as needed.
-            this.productMasterTableAdapter.Fill(this.gSTDataSet.ProductMaster);
+            //this.productMasterTableAdapter.Fill(this.gSTDataSet.ProductMaster);
 
         }
 

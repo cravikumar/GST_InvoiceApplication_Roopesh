@@ -26,7 +26,7 @@ namespace GST_InvoiceApplication
         private static List<Stream> m_streams;
         private static int m_currentPageIndex = 0;
         private static int productCount = 0;
-        public int _selectedCustomer;
+        public string _selectedCustomer;
         public SalesReport()
         {
             this.WindowState = FormWindowState.Maximized;
@@ -151,7 +151,7 @@ namespace GST_InvoiceApplication
 
             if (comboBox2.SelectedItem != null && Convert.ToInt32(comboBox2.SelectedValue.ToString()) >0)
             {
-                whereCondition = whereCondition + " s.CustomerID =  " + Convert.ToInt32(comboBox3.SelectedValue) + " and";
+                whereCondition = whereCondition + " s.CustomerName like '%" +_selectedCustomer+ "%' and";
             }
 
 
