@@ -490,10 +490,16 @@ namespace GST_InvoiceApplication
 
 
 
-            if(_currentCompany.IsGSTApplicable)
-            this.reportViewer1.LocalReport.ReportPath = path + originalInvoicePath;
+            if (_currentCompany.IsGSTApplicable)
+                this.reportViewer1.LocalReport.ReportPath = path + originalInvoicePath;
             else
-                this.reportViewer1.LocalReport.ReportPath = path + "\\InvoiceOriginalNoGST.rdlc";
+            {
+                if (!string.IsNullOrEmpty(_currentInvoice.Notes) && _currentInvoice.Notes.Trim().Length > 0)
+                    this.reportViewer1.LocalReport.ReportPath = path + "\\InvoiceOriginalNoGST_WithNotes.rdlc";
+                else
+                    this.reportViewer1.LocalReport.ReportPath = path + "\\InvoiceOriginalNoGST.rdlc";
+                //   this.reportViewer1.LocalReport.ReportPath = path + "\\InvoiceOriginalNoGST.rdlc";
+            }
 
             //this.reportViewer1.LocalReport.ReportPath = path + "\\InvoiceRollerOriginal.rdlc";
             this.reportViewer1.LocalReport.EnableExternalImages = true;
