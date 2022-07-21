@@ -245,6 +245,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvoiceOriginalNoGST-A4.rdlc" />
     <EmbeddedResource Include="InvoiceOriginalNoGST-Legal.rdlc" />
+    <EmbeddedResource Include="InvoiceOriginalNoGST_WithNotes.rdlc" />
     <EmbeddedResource Include="InvoiceOriginalV2.rdlc" />
     <EmbeddedResource Include="InvoiceOriginal_WithNotesV2.rdlc" />
     <EmbeddedResource Include="ProductSetup.resx">

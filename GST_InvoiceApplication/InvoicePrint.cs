@@ -75,7 +75,12 @@ namespace GST_InvoiceApplication
             if (_currentCompany.IsGSTApplicable)
                 report.ReportPath = path + originalInvoicePath;
             else
-                report.ReportPath = path + "\\InvoiceOriginalNoGST.rdlc";
+            {
+                if (!string.IsNullOrEmpty(_currentInvoice.Notes) && _currentInvoice.Notes.Trim().Length > 0)
+                    report.ReportPath = path + "\\InvoiceOriginalNoGST_WithNotes.rdlc";
+                else
+                    report.ReportPath = path + "\\InvoiceOriginalNoGST.rdlc";
+            }
             report.EnableExternalImages = true;
             DataTable table = new DataTable();
             table.Columns.Add("ProductName", typeof(string));
