@@ -119,8 +119,8 @@ namespace GST_InvoiceApplication
 
             ReportParameter p6 = new ReportParameter("BillNo", _currentInvoice.InvoiceId);
             ReportParameter p7 = new ReportParameter("BillDate", _currentInvoice.InvoiceDate.ToShortDateString());
-            ReportParameter p8 = new ReportParameter("TransportName", string.IsNullOrEmpty(_currentInvoice.StrTransport) ? "__________________" : _currentInvoice.StrTransport);
-            ReportParameter p9 = new ReportParameter("LRNo", string.IsNullOrEmpty(_currentInvoice.StrLRNo) ? "__________________" : _currentInvoice.StrLRNo);
+            ReportParameter p8 = new ReportParameter("TransportName", string.IsNullOrEmpty(_currentInvoice.StrTransport) ? "_____________" : _currentInvoice.StrTransport);
+            ReportParameter p9 = new ReportParameter("LRNo", string.IsNullOrEmpty(_currentInvoice.StrLRNo) ? "_____________" : _currentInvoice.StrLRNo);
 
             ReportParameter p10 = new ReportParameter("CustomerName", string.IsNullOrEmpty(_currentInvoice.CustomerName) ? "-" : _currentInvoice.CustomerName);
             ReportParameter p11 = new ReportParameter("CustomerAddress", string.IsNullOrEmpty(_currentInvoice.CustomerAddress) ? "-" : _currentInvoice.CustomerAddress);
@@ -215,8 +215,8 @@ namespace GST_InvoiceApplication
 
             ReportParameter p6 = new ReportParameter("BillNo", _currentInvoice.InvoiceId);
             ReportParameter p7 = new ReportParameter("BillDate", _currentInvoice.InvoiceDate.ToShortDateString());
-            ReportParameter p8 = new ReportParameter("TransportName", string.IsNullOrEmpty(_currentInvoice.StrTransport) ? "__________________" : _currentInvoice.StrTransport);
-            ReportParameter p9 = new ReportParameter("LRNo", string.IsNullOrEmpty(_currentInvoice.StrLRNo) ? "__________________" : _currentInvoice.StrLRNo);
+            ReportParameter p8 = new ReportParameter("TransportName", string.IsNullOrEmpty(_currentInvoice.StrTransport) ? "_____________" : _currentInvoice.StrTransport);
+            ReportParameter p9 = new ReportParameter("LRNo", string.IsNullOrEmpty(_currentInvoice.StrLRNo) ? "_____________" : _currentInvoice.StrLRNo);
 
             ReportParameter p10 = new ReportParameter("CustomerName", string.IsNullOrEmpty(_currentInvoice.CustomerName) ? "-" : _currentInvoice.CustomerName);
             ReportParameter p11 = new ReportParameter("CustomerAddress", string.IsNullOrEmpty(_currentInvoice.CustomerAddress) ? "-" : _currentInvoice.CustomerAddress);
@@ -536,8 +536,8 @@ namespace GST_InvoiceApplication
 
             ReportParameter p6 = new ReportParameter("BillNo", _currentInvoice.InvoiceId);
             ReportParameter p7 = new ReportParameter("BillDate", _currentInvoice.InvoiceDate.ToShortDateString());
-            ReportParameter p8 = new ReportParameter("TransportName",string.IsNullOrEmpty(_currentInvoice.StrTransport)? "__________________":_currentInvoice.StrTransport);
-            ReportParameter p9 = new ReportParameter("LRNo",string.IsNullOrEmpty(_currentInvoice.StrLRNo)? "__________________":_currentInvoice.StrLRNo);
+            ReportParameter p8 = new ReportParameter("TransportName",string.IsNullOrEmpty(_currentInvoice.StrTransport)? "_____________":_currentInvoice.StrTransport);
+            ReportParameter p9 = new ReportParameter("LRNo",string.IsNullOrEmpty(_currentInvoice.StrLRNo)? "_____________":_currentInvoice.StrLRNo);
 
             ReportParameter p10 = new ReportParameter("CustomerName", string.IsNullOrEmpty(_currentInvoice.CustomerName)?"-":_currentInvoice.CustomerName);
             ReportParameter p11 = new ReportParameter("CustomerAddress", string.IsNullOrEmpty(_currentInvoice.CustomerAddress)?"-":_currentInvoice.CustomerAddress);

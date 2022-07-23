@@ -1591,7 +1591,7 @@ namespace GST_InvoiceApplication
 
             //if (comboBox4.SelectedItem != null && comboBox4.SelectedItem.ToString() == "CASH BILL")
             //    inv.IsPaid = true;
-
+            
             inv.CustomerId = Convert.ToInt32(dr["CustomerId"]);
             inv.CustomerName = textBox1.Text = dr["CustomerName"].ToString();
             inv.CustomerGST = textBox6.Text = dr["CustomerGST"].ToString();
