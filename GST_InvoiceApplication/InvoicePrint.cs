@@ -599,7 +599,7 @@ namespace GST_InvoiceApplication
 
         private void reportViewer1_Print(object sender, ReportPrintEventArgs e)
         {
-            this.reportViewer1.PrintDialog();
+           // this.reportViewer1.PrintDialog();
             PageSetupDialog setupDlg = new PageSetupDialog();
             PrintDocument printDoc = new PrintDocument();
             setupDlg.Document = printDoc;
