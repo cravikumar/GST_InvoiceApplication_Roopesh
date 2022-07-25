@@ -2087,7 +2087,7 @@ namespace GST_InvoiceApplication
             inv.CustomerAddress = textBox2.Text;
             inv.CustomerPanAadhaar = textBox4.Text;
 
-            if (inv.CustomerId < 1)
+            if (inv.CustomerId < 1 && (inv.CustomerName.Length > 0 || inv.CustomerAddress.Length > 0))
             {
                 string query = "insert into CustomerData " +
                 "(CustomerName,CustomerType,Address,GSTIN,Aadhaar,PanNumber,MobilePhone1,MobilePhone2,OfficePhone1," +
