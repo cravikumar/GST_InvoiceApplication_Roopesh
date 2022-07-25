@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoxLearn.License;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -36,8 +37,28 @@ namespace GST_InvoiceApplication
             form2.Show();
         }
 
+        private DateTime getExipryDate()
+        {
+            KeyManager km = new KeyManager(ComputerInfo.GetComputerId());
+
+            LicenseInfo lic = new LicenseInfo();
+            int value = km.LoadSuretyFile(String.Format(@"{0}\key.lic", Application.StartupPath), ref lic);
+            string productKey = lic.ProductKey;
+            if (km.ValidKey(ref productKey))
+            {
+                KeyValuesClass kv = new KeyValuesClass();
+                if (km.DisassembleKey(productKey, ref kv))
+                {
+                    
+                    return kv.Expiration;
+                }
+            }
+            return new DateTime();
+        }
+
         private void button7_Click(object sender, EventArgs e)
         {
+            
             if (!licenseCheck())
                 return;
             this.Hide();
@@ -48,9 +69,16 @@ namespace GST_InvoiceApplication
 
         private bool licenseCheck()
         {
-            return true;
-            bool valid = false;
+            DateTime ex = getExipryDate();
 
+            if (ex > DateTime.Now)
+            { return true; }
+            else {
+                MessageBox.Show("Invalid License..!!");
+                return false;
+            }
+            
+            bool valid = false;
             bool comValid = false;
 
             string computerName = System.Environment.GetEnvironmentVariable("COMPUTERNAME");
@@ -106,10 +134,8 @@ namespace GST_InvoiceApplication
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (!licenseCheck())
-                return;
             this.Hide();
-            var form2 = new ProductSetup();
+            var form2 = new AddReceipts();
             form2.Closed += (s, args) => this.Close();
             form2.Show();
         }

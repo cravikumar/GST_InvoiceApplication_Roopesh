@@ -50,6 +50,10 @@
     <ApplicationIcon>BillingIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FoxLearn.License, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>External\FoxLearn.License.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.38.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.38.0\lib\net45\Google.Apis.dll</HintPath>
       <Private>True</Private>
@@ -168,6 +172,7 @@
     <Compile Include="HSNSalesReportNew.Designer.cs">
       <DependentUpon>HSNSalesReportNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="License.cs" />
     <Compile Include="ProductSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +331,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BillingIcon.ico" />
+    <Content Include="External\FoxLearn.License.dll" />
     <Content Include="GST.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
