@@ -11,7 +11,7 @@
                   <TextRun>
                     <Value>=Parameters!CompanyName.Value</Value>
                     <Style>
-                      <FontSize>11pt</FontSize>
+                      <FontSize>10.5pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -21,10 +21,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>1.02306cm</Top>
-            <Left>0.04641in</Left>
+             <Top>1.02306cm</Top>
+            <Left>0.15067in</Left>
             <Height>0.17708in</Height>
-            <Width>2.68965in</Width>
+            <Width>2.57416in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -624,7 +624,7 @@
             <Top>1.43054in</Top>
             <Left>0.08208in</Left>
             <Height>0.375in</Height>
-            <Width>2.64275in</Width>
+            <Width>2.64277in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
