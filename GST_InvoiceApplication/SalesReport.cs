@@ -34,6 +34,13 @@ namespace GST_InvoiceApplication
 
             LoadCompanyData();
             LoadCustomerData();
+
+            String pkInstalledPrinters;
+            for (int i = 0; i < System.Drawing.Printing.PrinterSettings.InstalledPrinters.Count; i++)
+            {
+                pkInstalledPrinters = System.Drawing.Printing.PrinterSettings.InstalledPrinters[i];
+                comboBox1.Items.Add(pkInstalledPrinters);
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -428,13 +435,19 @@ namespace GST_InvoiceApplication
         }
 
 
-        public static void Print()
+        public void Print()
         {
 
             if (m_streams == null || m_streams.Count == 0)
                 throw new Exception("Error: no stream to print.");
             PrintDocument printDoc = new PrintDocument();
-            //printDoc.PrinterSettings.PrinterName = System.Configuration.ConfigurationManager.AppSettings["RetailPrinterRoller"].ToString();
+
+            if (comboBox1.SelectedIndex != -1)
+            {
+                // The combo box's Text property returns the selected item's text, which is the printer name.
+                printDoc.PrinterSettings.PrinterName = comboBox1.Text;
+            }
+            
             if (!printDoc.PrinterSettings.IsValid)
             {
                 MessageBox.Show("Printer Not Found - " + printDoc.PrinterSettings.PrinterName);

@@ -52,7 +52,11 @@ namespace GST_InvoiceApplication
             this.button4 = new System.Windows.Forms.Button();
             this.comboBox2 = new SergeUtils.EasyCompletionComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button6
@@ -116,21 +120,21 @@ namespace GST_InvoiceApplication
             this.dataGridView1.Location = new System.Drawing.Point(12, 124);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1236, 378);
+            this.dataGridView1.Size = new System.Drawing.Size(1236, 354);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 543);
+            this.textBox1.Location = new System.Drawing.Point(43, 541);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(407, 20);
+            this.textBox1.Size = new System.Drawing.Size(488, 20);
             this.textBox1.TabIndex = 15;
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(540, 540);
+            this.button2.Location = new System.Drawing.Point(537, 538);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(131, 23);
             this.button2.TabIndex = 16;
@@ -140,7 +144,7 @@ namespace GST_InvoiceApplication
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(691, 540);
+            this.progressBar1.Location = new System.Drawing.Point(688, 538);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(467, 23);
             this.progressBar1.TabIndex = 17;
@@ -157,7 +161,7 @@ namespace GST_InvoiceApplication
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(540, 511);
+            this.button3.Location = new System.Drawing.Point(279, 21);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(131, 23);
             this.button3.TabIndex = 19;
@@ -239,11 +243,40 @@ namespace GST_InvoiceApplication
             this.label5.TabIndex = 84;
             this.label5.Text = "Select Customer";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(93, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(130, 20);
+            this.label19.TabIndex = 54;
+            this.label19.Text = "Available Printers";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(65, 23);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(191, 21);
+            this.comboBox1.TabIndex = 51;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Location = new System.Drawing.Point(59, 484);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(562, 48);
+            this.panel1.TabIndex = 86;
+            // 
             // SalesReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1275, 713);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button4);
@@ -252,7 +285,6 @@ namespace GST_InvoiceApplication
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button2);
@@ -267,6 +299,8 @@ namespace GST_InvoiceApplication
             this.Name = "SalesReport";
             this.Text = "SalesReport";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,5 +342,8 @@ namespace GST_InvoiceApplication
         private System.Windows.Forms.Button button4;
         private SergeUtils.EasyCompletionComboBox comboBox2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
