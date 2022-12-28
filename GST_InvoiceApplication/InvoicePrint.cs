@@ -65,9 +65,10 @@ namespace GST_InvoiceApplication
             }
             else if(!string.IsNullOrEmpty(_currentInvoice.Notes) && _currentInvoice.Notes.Trim().Length>0)
                 originalInvoicePath = "\\InvoiceOriginal_WithNotesV2.rdlc";
+            else if(_currentCompany.IsCompositeGST)
+                originalInvoicePath = "\\InvoiceOriginalV2_CompTax.rdlc";
             else
                 originalInvoicePath = "\\InvoiceOriginalV2.rdlc";
-
 
             if (!File.Exists(path + originalInvoicePath))
                 MessageBox.Show("File Not present at " + path + originalInvoicePath);
@@ -481,6 +482,8 @@ namespace GST_InvoiceApplication
             }
             else if (!string.IsNullOrEmpty(_currentInvoice.Notes) && _currentInvoice.Notes.Trim().Length > 0)
                 originalInvoicePath = "\\InvoiceOriginal_WithNotesV2.rdlc";
+            else if (_currentCompany.IsCompositeGST)
+                originalInvoicePath = "\\InvoiceOriginalV2_CompTax.rdlc";
             else
                 originalInvoicePath = "\\InvoiceOriginalV2.rdlc";
 

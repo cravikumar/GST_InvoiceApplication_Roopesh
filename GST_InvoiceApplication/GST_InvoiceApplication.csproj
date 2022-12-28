@@ -252,6 +252,7 @@
     <EmbeddedResource Include="InvoiceOriginalNoGST-Legal.rdlc" />
     <EmbeddedResource Include="InvoiceOriginalNoGST_WithNotes.rdlc" />
     <EmbeddedResource Include="InvoiceOriginalV2.rdlc" />
+    <EmbeddedResource Include="InvoiceOriginalV2_CompTax.rdlc" />
     <EmbeddedResource Include="InvoiceOriginal_WithNotesV2.rdlc" />
     <EmbeddedResource Include="ProductSetup.resx">
       <DependentUpon>ProductSetup.cs</DependentUpon>

@@ -81,6 +81,7 @@ namespace GST_InvoiceApplication
                 ", PropriterName = '" + textBox1.Text + "'" +
                 ", Address = '" + richTextBox1.Text + "'" +
                 ", IsGSTApplicable = '" + checkBox1.Checked.ToString() + "'" +
+                ", IsCompositeTax = '" + checkBox4.Checked.ToString() + "'" +
                 ", DefaultCashBill = '" + checkBox2.Checked.ToString() + "'" +
                 ", ThermalPrinter = '" + checkBox3.Checked.ToString() + "'" +
                 ", GSTIN = '" + textBox4.Text + "'" +
@@ -118,6 +119,7 @@ namespace GST_InvoiceApplication
                 textBox1.Text = dr["PropriterName"].ToString();
                 richTextBox1.Text = dr["Address"].ToString();
                 checkBox1.Checked = Convert.ToBoolean(dr["IsGSTApplicable"]);
+                checkBox4.Checked = Convert.ToBoolean(dr["IsCompositeTax"]);
                 checkBox2.Checked = Convert.ToBoolean(dr["DefaultCashBill"]);
                 checkBox3.Checked = Convert.ToBoolean(dr["ThermalPrinter"]);
                 textBox4.Text = dr["GSTIN"].ToString();

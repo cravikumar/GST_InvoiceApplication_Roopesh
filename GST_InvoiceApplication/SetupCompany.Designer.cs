@@ -98,6 +98,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyDetailsBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -736,11 +738,32 @@
             this.label20.TabIndex = 54;
             this.label20.Text = "Thermal Printer";
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(484, 225);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(15, 14);
+            this.checkBox4.TabIndex = 57;
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(338, 221);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(131, 20);
+            this.label21.TabIndex = 56;
+            this.label21.Text = "Is Composite Tax";
+            // 
             // SetupCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1275, 669);
+            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.panel1);
@@ -869,5 +892,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.Label label21;
     }
 }

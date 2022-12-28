@@ -315,6 +315,7 @@ namespace GST_InvoiceApplication
                 currentCompany.PhoneNumbers = dr["PhoneNo"].ToString();
                 currentCompany.GSTIN = dr["GSTIN"].ToString();
                 currentCompany.IsGSTApplicable = Convert.ToBoolean(dr["IsGSTApplicable"]);
+                currentCompany.IsCompositeGST = Convert.ToBoolean(dr["IsCompositeTax"]);
                 currentCompany.GSTIN = dr["GSTIN"].ToString();
                 currentCompany.PANCard = dr["PANCard"].ToString();
                 currentCompany.Aadhaar = dr["Aadhaar"].ToString();
@@ -382,6 +383,7 @@ namespace GST_InvoiceApplication
             currentCompany.PhoneNumbers = dr["PhoneNo"].ToString();
             currentCompany.GSTIN = dr["GSTIN"].ToString();
             currentCompany.IsGSTApplicable = Convert.ToBoolean(dr["IsGSTApplicable"]);
+            currentCompany.IsCompositeGST = Convert.ToBoolean(dr["IsCompositeTax"]);
             currentCompany.GSTIN = dr["GSTIN"].ToString();
             currentCompany.PANCard = dr["PANCard"].ToString();
             currentCompany.Aadhaar = dr["Aadhaar"].ToString();
@@ -897,6 +899,7 @@ namespace GST_InvoiceApplication
                 currentCompany.PhoneNumbers = dr["PhoneNo"].ToString();
                 currentCompany.GSTIN = dr["GSTIN"].ToString();
                 currentCompany.IsGSTApplicable = Convert.ToBoolean(dr["IsGSTApplicable"]);
+                currentCompany.IsCompositeGST = Convert.ToBoolean(dr["IsCompositeTax"]);
                 currentCompany.GSTIN = dr["GSTIN"].ToString();
                 currentCompany.PANCard = dr["PANCard"].ToString();
                 currentCompany.Aadhaar = dr["Aadhaar"].ToString();
@@ -937,6 +940,7 @@ namespace GST_InvoiceApplication
                 currentCompany.PhoneNumbers = dr["PhoneNo"].ToString();
                 currentCompany.GSTIN = dr["GSTIN"].ToString();
                 currentCompany.IsGSTApplicable = Convert.ToBoolean(dr["IsGSTApplicable"]);
+                currentCompany.IsCompositeGST = Convert.ToBoolean(dr["IsCompositeTax"]);
                 currentCompany.GSTIN = dr["GSTIN"].ToString();
                 currentCompany.PANCard = dr["PANCard"].ToString();
                 currentCompany.Aadhaar = dr["Aadhaar"].ToString();
@@ -1341,6 +1345,7 @@ namespace GST_InvoiceApplication
             currentCompany.PhoneNumbers = dr["PhoneNo"].ToString();
             currentCompany.GSTIN = dr["GSTIN"].ToString();
             currentCompany.IsGSTApplicable = Convert.ToBoolean(dr["IsGSTApplicable"]);
+            currentCompany.IsCompositeGST = Convert.ToBoolean(dr["IsCompositeTax"]);
             currentCompany.GSTIN = dr["GSTIN"].ToString();
             currentCompany.PANCard = dr["PANCard"].ToString();
             currentCompany.Aadhaar = dr["Aadhaar"].ToString();
@@ -1358,6 +1363,15 @@ namespace GST_InvoiceApplication
             currentCompany.DefaultPrinter = dr["DefaultPrinter"].ToString();
 
             _selectedCompany = currentCompany;
+
+            if (_selectedCompany.IsCompositeGST)
+            {
+                
+                _defaultTax = 0;
+                textBox16.Text = "0";
+                textBox17.Text = "0";
+                textBox18.Text = "0";
+            }
 
             if (currentCompany.IsGSTApplicable == false)
             {
@@ -2557,9 +2571,18 @@ namespace GST_InvoiceApplication
             }
             else
             {
+                if (_selectedCompany.CompanyID > 0 && _selectedCompany.IsCompositeGST)
+                {
+                    textBox18.Text = "";
+                    textBox16.Text = "";
+                    textBox17.Text = "";
+                }
+                else
+                { 
                 textBox18.Text = "";
                 textBox16.Text = (_defaultTax / 2).ToString();
                 textBox17.Text = (_defaultTax / 2).ToString();
+                }
             }
             updateTotalBill();
         }
