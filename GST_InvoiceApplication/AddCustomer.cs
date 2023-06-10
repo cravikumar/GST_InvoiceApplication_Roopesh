@@ -186,5 +186,22 @@ namespace GST_InvoiceApplication
 
 
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            string query = "Delete * From CustomerData " +
+         " where CustomerName = '' and GSTIN = '' and Address = ''"; 
+            try { Functions.RunExecuteNonQuery(query); }
+            catch
+            {
+
+            }
+
+            MessageBox.Show("Deleted");
+
+            button4_Click(sender, e);
+            button1_Click(sender, e);
+
+        }
     }
 }

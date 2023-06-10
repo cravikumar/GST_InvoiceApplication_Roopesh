@@ -126,6 +126,40 @@ namespace GST_InvoiceApplication
 
         }
 
+        private void LoadProductsOfCustomer()
+        {
+            DateTime FromDate = dateTimePicker1.Value;
+            DateTime ToDate = dateTimePicker2.Value;
+            ToDate = ToDate.AddDays(1);
+
+
+            string whereCondition = "";
+            if (comboBox2.SelectedItem != null && Convert.ToInt32(comboBox2.SelectedValue.ToString()) > 0)
+            {
+                whereCondition = whereCondition + " s.CustomerName like '%" + _selectedCustomer + "%' and ";
+            }
+
+
+            string sql = "select * from InvoiceProductDetails where saleid in (select saleid from salesInvoiceDetail s where "+ whereCondition 
+                + "s.InvoiceDate >#" + Convert.ToDateTime(FromDate.ToShortDateString()).ToString("yyyy-MM-dd") 
+                + "# and s.InvoiceDate <#" + Convert.ToDateTime(ToDate.ToShortDateString()).ToString("yyyy-MM-dd") +
+                "#);";
+            var ds = Functions.RunSelectSql(sql);
+            Dictionary<int, string> userCache = new Dictionary<int, string>();
+            userCache.Add(0, "--Select--");
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                userCache.Add(Convert.ToInt32(dr["ID"]), dr["ProductName"].ToString() + " - " + dr["Rate"].ToString());
+
+            }
+
+
+            easyCompletionComboBox1.MatchingMethod = StringMatchingMethod.UseRegexs;
+            easyCompletionComboBox1.DataSource = new BindingSource(userCache, null);
+            easyCompletionComboBox1.DisplayMember = "Value";
+            easyCompletionComboBox1.ValueMember = "Key";
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             DateTime FromDate = dateTimePicker1.Value;

@@ -215,19 +215,6 @@ namespace GST_InvoiceApplication
 
         public AddInvoice()
         {
-            string key = ConfigurationManager.AppSettings["Key"];
-            DateTime dt;
-            if (DateTime.TryParseExact((Convert.ToDouble(key) / 8).ToString(), "ddMMyyyy", CultureInfo.InvariantCulture,
-                                 DateTimeStyles.None, out dt))
-            {
-                if (dt > DateTime.Now)
-                {  }
-                else
-                { return; }
-            }
-            else
-            { return; }
-
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             LoadCustomerData();
@@ -260,19 +247,7 @@ namespace GST_InvoiceApplication
 
         public AddInvoice(bool isCashBill)
         {
-            string key = ConfigurationManager.AppSettings["Key"];
-            DateTime dt;
-            if (DateTime.TryParseExact((Convert.ToDouble(key) / 8).ToString(), "ddMMyyyy", CultureInfo.InvariantCulture,
-                                 DateTimeStyles.None, out dt))
-            {
-                if (dt > DateTime.Now)
-                { }
-                else
-                { return; }
-            }
-            else
-            { return; }
-
+            
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             LoadCustomerData();

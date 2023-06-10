@@ -55,6 +55,8 @@ namespace GST_InvoiceApplication
             this.label19 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.easyCompletionComboBox1 = new SergeUtils.EasyCompletionComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -104,7 +106,7 @@ namespace GST_InvoiceApplication
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(634, 37);
+            this.button1.Location = new System.Drawing.Point(770, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 13;
@@ -152,7 +154,7 @@ namespace GST_InvoiceApplication
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(729, 57);
+            this.checkBox1.Location = new System.Drawing.Point(863, 17);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(101, 17);
             this.checkBox1.TabIndex = 18;
@@ -217,9 +219,9 @@ namespace GST_InvoiceApplication
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(634, 68);
+            this.button4.Location = new System.Drawing.Point(770, 48);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 23);
+            this.button4.Size = new System.Drawing.Size(82, 23);
             this.button4.TabIndex = 81;
             this.button4.Text = "HSN Missing";
             this.button4.UseVisualStyleBackColor = true;
@@ -228,16 +230,16 @@ namespace GST_InvoiceApplication
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(321, 86);
+            this.comboBox2.Location = new System.Drawing.Point(95, 88);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(286, 21);
+            this.comboBox2.Size = new System.Drawing.Size(301, 21);
             this.comboBox2.TabIndex = 85;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(231, 89);
+            this.label5.Location = new System.Drawing.Point(5, 91);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(84, 13);
             this.label5.TabIndex = 84;
@@ -271,11 +273,30 @@ namespace GST_InvoiceApplication
             this.panel1.Size = new System.Drawing.Size(562, 48);
             this.panel1.TabIndex = 86;
             // 
+            // easyCompletionComboBox1
+            // 
+            this.easyCompletionComboBox1.FormattingEnabled = true;
+            this.easyCompletionComboBox1.Location = new System.Drawing.Point(509, 88);
+            this.easyCompletionComboBox1.Name = "easyCompletionComboBox1";
+            this.easyCompletionComboBox1.Size = new System.Drawing.Size(188, 21);
+            this.easyCompletionComboBox1.TabIndex = 88;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(407, 94);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 13);
+            this.label6.TabIndex = 87;
+            this.label6.Text = "Customer Products";
+            // 
             // SalesReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1275, 713);
+            this.Controls.Add(this.easyCompletionComboBox1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label5);
@@ -317,6 +338,8 @@ namespace GST_InvoiceApplication
 
             _selectedCustomer = ds.Tables[0].Rows[0]["CustomerName"].ToString();
 
+            LoadProductsOfCustomer();
+
         }
 
         #endregion
@@ -345,5 +368,7 @@ namespace GST_InvoiceApplication
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel1;
+        private SergeUtils.EasyCompletionComboBox easyCompletionComboBox1;
+        private System.Windows.Forms.Label label6;
     }
 }

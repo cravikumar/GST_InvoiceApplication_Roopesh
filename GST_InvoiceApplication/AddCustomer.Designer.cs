@@ -76,6 +76,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerDetailsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -233,9 +234,9 @@
             this.gSTINDataGridViewTextBoxColumn,
             this.EDIT});
             this.dataGridView1.DataSource = this.customerDetailsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(584, 101);
+            this.dataGridView1.Location = new System.Drawing.Point(584, 145);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(608, 349);
+            this.dataGridView1.Size = new System.Drawing.Size(599, 305);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -470,11 +471,23 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(132, 494);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(212, 31);
+            this.button7.TabIndex = 49;
+            this.button7.Text = "CleanUpCustomerData";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1275, 508);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label8);
@@ -574,6 +587,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gSTINDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn EDIT;
         private System.Windows.Forms.Button button5;
-
+        private System.Windows.Forms.Button button7;
     }
 }
