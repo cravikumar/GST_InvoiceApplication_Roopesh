@@ -27,6 +27,7 @@ namespace GST_InvoiceApplication
         private static int m_currentPageIndex = 0;
         private static int productCount = 0;
         public string _selectedCustomer;
+        public string _selectedProduct;
         public SalesReport()
         {
             this.WindowState = FormWindowState.Maximized;
@@ -195,6 +196,7 @@ namespace GST_InvoiceApplication
                 whereCondition = whereCondition + " s.CustomerName like '%" +_selectedCustomer+ "%' and";
             }
 
+            
 
             if (!checkBox1.Checked)
              sql = "select " +
@@ -206,9 +208,39 @@ namespace GST_InvoiceApplication
                  sql = "select " +
                 "C.CompanyName,C.GSTIN as CompanyGST,S.InvoiceId,S.InvoiceDate,S.CustomerName,S.CustomerGST,S.CustomerPanAadhaar as PANAadhar,S.StrTotalAfterDiscountOrBeforeTax as TotalAmount,S.StrSGST as SGST,S.StrCGST as CGST,S.StrIGST as IGST,S.StrTotalAfterTax as TotalAfterTax,S.StrRounded as RoundOff,S.StrTotalPayable as GrandTotal,S.IsPaid as IsPaid,C.ID as CompanyId " +
                 //"s.*,c.* "+
-            " from SalesInvoiceDetail s inner join CompanyData c on c.ID = s.CompanyId where s.InvoiceDate >#" + Convert.ToDateTime(FromDate.ToShortDateString()).ToString("yyyy-MM-dd") +
-                "# and " + whereCondition + " s.InvoiceDate <#" + Convert.ToDateTime(ToDate.ToShortDateString()).ToString("yyyy-MM-dd") + "# Order by CompanyId,InvoiceId,CreatedOn";
+            " from SalesInvoiceDetail s inner join CompanyData c on c.ID = s.CompanyId where" +
+            " s.InvoiceDate >#" + Convert.ToDateTime(FromDate.ToShortDateString()).ToString("yyyy-MM-dd") +
+                "# and " + whereCondition + 
+                " s.InvoiceDate <#" + Convert.ToDateTime(ToDate.ToShortDateString()).ToString("yyyy-MM-dd") + "# Order by CompanyId,InvoiceId,CreatedOn";
 
+
+            if (easyCompletionComboBox1.SelectedItem != null && Convert.ToInt32(easyCompletionComboBox1.SelectedValue.ToString()) > 0)
+            {
+                whereCondition = whereCondition + " p.productname like '%" + _selectedProduct + "%' and";
+
+                if (!checkBox1.Checked)
+                {
+                    sql = "select C.ID,C.CompanyName,S.InvoiceId,S.InvoiceDate,S.CustomerName,p.productname,p.quantity,p.rate" +
+                            " from (SalesInvoiceDetail s inner join CompanyData c on c.ID = s.CompanyId) " +
+                            "inner join InvoiceProductDetails p on p.saleid = s.saleid " +
+                            "where s.InvoiceId not like '%Backup%' and " +
+                            whereCondition +
+                            " s.InvoiceDate >#" + Convert.ToDateTime(FromDate.ToShortDateString()).ToString("yyyy-MM-dd") +
+                            "# and s.InvoiceDate <#" + Convert.ToDateTime(ToDate.ToShortDateString()).ToString("yyyy-MM-dd") +
+                            "# Order by InvoiceId,s.CreatedOn";
+                }
+                else
+                {
+                    sql = "select C.ID,C.CompanyName,S.InvoiceId,S.InvoiceDate,S.CustomerName,p.productname,p.quantity,p.rate" +
+                            " from (SalesInvoiceDetail s inner join CompanyData c on c.ID = s.CompanyId) " +
+                            "inner join InvoiceProductDetails p on p.saleid = s.saleid " +
+                            "where 1=1 " +
+                            whereCondition +
+                            " s.InvoiceDate >#" + Convert.ToDateTime(FromDate.ToShortDateString()).ToString("yyyy-MM-dd") +
+                            "# and s.InvoiceDate <#" + Convert.ToDateTime(ToDate.ToShortDateString()).ToString("yyyy-MM-dd") + 
+                            "# Order by InvoiceId,s.CreatedOn";
+                }
+            }
 
             DataSet ds = Functions.RunSelectSql(sql);
 
@@ -576,8 +608,14 @@ namespace GST_InvoiceApplication
 
             bool converted = int.TryParse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[2].Value.ToString(), out InvoiceId);
             if (converted)
-                converted = int.TryParse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[15].Value.ToString(), out CompanyId);
+            {
+                if(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells.Count >10)
+                 converted = int.TryParse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[15].Value.ToString(), out CompanyId);
 
+                else
+                    converted = int.TryParse(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value.ToString(), out CompanyId);
+
+            }
             DateTime inv = Convert.ToDateTime(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[3].Value.ToString());
 
             bool isCurrentYearBill = Functions.isCurrentFinancialYear(inv);
@@ -684,6 +722,19 @@ namespace GST_InvoiceApplication
             }
             else
                 dataGridView1.DataSource = dt;
+        }
+
+        private void easyCompletionComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (easyCompletionComboBox1.SelectedIndex < 1)
+                return;
+
+
+            string sql = "select * from invoiceproductdetails where ID = " + Convert.ToInt32(easyCompletionComboBox1.SelectedValue);
+            var ds = Functions.RunSelectSql(sql);
+
+            _selectedProduct = ds.Tables[0].Rows[0]["productname"].ToString();
+
         }
     }
 }

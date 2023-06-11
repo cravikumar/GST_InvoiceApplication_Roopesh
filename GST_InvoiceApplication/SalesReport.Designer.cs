@@ -280,6 +280,7 @@ namespace GST_InvoiceApplication
             this.easyCompletionComboBox1.Name = "easyCompletionComboBox1";
             this.easyCompletionComboBox1.Size = new System.Drawing.Size(188, 21);
             this.easyCompletionComboBox1.TabIndex = 88;
+            this.easyCompletionComboBox1.SelectedIndexChanged += new System.EventHandler(this.easyCompletionComboBox1_SelectedIndexChanged);
             // 
             // label6
             // 
