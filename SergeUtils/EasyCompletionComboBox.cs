@@ -1,3 +1,66 @@
+public class EasyCompletionComboBoxCell : DataGridViewComboBoxCell
+{
+    public StringMatchingMethod MatchingMethod { get; set; } = StringMatchingMethod.NoWildcards;
+
+    public override Type EditType => typeof(EasyCompletionComboBox);
+
+    public override object Clone()
+    {
+        var cell = (EasyCompletionComboBoxCell)base.Clone();
+        cell.MatchingMethod = this.MatchingMethod; // Ensure MatchingMethod is cloned
+        return cell;
+    }
+
+    protected override void InitializeEditingControl(int rowIndex, object initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
+    {
+        base.InitializeEditingControl(rowIndex, initialFormattedValue, dataGridViewCellStyle);
+
+        if (DataGridView.EditingControl is EasyCompletionComboBox editingControl)
+        {
+            editingControl.MatchingMethod = this.MatchingMethod; // Pass the MatchingMethod
+        }
+    }
+}
+
+
+public class EasyCompletionComboBoxColumn : DataGridViewComboBoxColumn
+{
+    public StringMatchingMethod MatchingMethod
+    {
+        get
+        {
+            if (CellTemplate is EasyCompletionComboBoxCell cell)
+            {
+                return cell.MatchingMethod;
+            }
+            return StringMatchingMethod.NoWildcards;
+        }
+        set
+        {
+            if (CellTemplate is EasyCompletionComboBoxCell cell)
+            {
+                cell.MatchingMethod = value;
+            }
+            foreach (DataGridViewRow row in DataGridView?.Rows ?? new DataGridViewRowCollection(null))
+            {
+                if (row.Cells[Index] is EasyCompletionComboBoxCell rowCell)
+                {
+                    rowCell.MatchingMethod = value;
+                }
+            }
+        }
+    }
+
+    public EasyCompletionComboBoxColumn()
+    {
+        CellTemplate = new EasyCompletionComboBoxCell();
+    }
+}
+
+
+
+
+
 public class EasyCompletionComboBoxEditingControl : EasyCompletionComboBox, IDataGridViewEditingControl
 {
     private DataGridView _dataGridView;
