@@ -1,21 +1,134 @@
-﻿// Copyright © Serge Weinstock 2014.
-//
-// This library is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public License
-// along with this library.  If not, see <http://www.gnu.org/licenses/>.
-
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
+
+namespace SergeUtils
+{
+    public class EasyCompletionComboBoxCell : DataGridViewComboBoxCell
+    {
+        public EasyCompletionComboBoxCell()
+        {
+            // Ensure cell inherits default properties
+            this.FlatStyle = FlatStyle.Flat;
+        }
+
+        public override Type EditType
+        {
+            get
+            {
+                // Specify the editing control type as EasyCompletionComboBox
+                return typeof(EasyCompletionComboBoxEditingControl);
+            }
+        }
+
+        public override object Clone()
+        {
+            EasyCompletionComboBoxCell clone = (EasyCompletionComboBoxCell)base.Clone();
+            return clone;
+        }
+
+        protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+        {
+            return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+        }
+    }
+
+    public class EasyCompletionComboBoxEditingControl : EasyCompletionComboBox, IDataGridViewEditingControl
+    {
+        private DataGridView _dataGridView;
+        private bool _valueChanged;
+        private int _rowIndex;
+
+        public EasyCompletionComboBoxEditingControl()
+        {
+            this.DropDownStyle = ComboBoxStyle.DropDown;
+        }
+
+        public DataGridView EditingControlDataGridView
+        {
+            get => _dataGridView;
+            set => _dataGridView = value;
+        }
+
+        public object EditingControlFormattedValue
+        {
+            get => this.Text;
+            set
+            {
+                if (value is string text)
+                {
+                    this.Text = text;
+                }
+            }
+        }
+
+        public int EditingControlRowIndex
+        {
+            get => _rowIndex;
+            set => _rowIndex = value;
+        }
+
+        public bool EditingControlValueChanged
+        {
+            get => _valueChanged;
+            set => _valueChanged = value;
+        }
+
+        public Cursor EditingPanelCursor => Cursors.Default;
+
+        public bool RepositionEditingControlOnValueChange => false;
+
+        public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
+        {
+            return this.EditingControlFormattedValue;
+        }
+
+        public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
+        {
+            this.Font = dataGridViewCellStyle.Font;
+            this.ForeColor = dataGridViewCellStyle.ForeColor;
+            this.BackColor = dataGridViewCellStyle.BackColor;
+        }
+
+        public void PrepareEditingControlForEdit(bool selectAll)
+        {
+            if (selectAll)
+            {
+                this.SelectAll();
+            }
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            // Notify DataGridView that the value has changed
+            _valueChanged = true;
+            _dataGridView?.NotifyCurrentCellDirty(true);
+        }
+    }
+
+    public class EasyCompletionComboBoxColumn : DataGridViewComboBoxColumn
+    {
+        public EasyCompletionComboBoxColumn()
+        {
+            this.CellTemplate = new EasyCompletionComboBoxCell();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+Drawing;
 using System.Windows.Forms;
 using ComboBox = System.Windows.Forms.ComboBox;
 
