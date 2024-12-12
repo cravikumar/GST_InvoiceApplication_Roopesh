@@ -1,3 +1,100 @@
+public class EasyCompletionComboBoxEditingControl : EasyCompletionComboBox, IDataGridViewEditingControl
+{
+    private DataGridView _dataGridView;
+    private bool _valueChanged;
+    private int _rowIndex;
+
+    public EasyCompletionComboBoxEditingControl()
+    {
+        this.DropDownStyle = ComboBoxStyle.DropDown;
+    }
+
+    public DataGridView EditingControlDataGridView
+    {
+        get => _dataGridView;
+        set => _dataGridView = value;
+    }
+
+    public object EditingControlFormattedValue
+    {
+        get => this.Text;
+        set
+        {
+            if (value is string text)
+            {
+                this.Text = text;
+            }
+        }
+    }
+
+    public int EditingControlRowIndex
+    {
+        get => _rowIndex;
+        set => _rowIndex = value;
+    }
+
+    public bool EditingControlValueChanged
+    {
+        get => _valueChanged;
+        set => _valueChanged = value;
+    }
+
+    public Cursor EditingPanelCursor => Cursors.Default;
+
+    public bool RepositionEditingControlOnValueChange => false;
+
+    public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
+    {
+        return this.EditingControlFormattedValue;
+    }
+
+    public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
+    {
+        this.Font = dataGridViewCellStyle.Font;
+        this.ForeColor = dataGridViewCellStyle.ForeColor;
+        this.BackColor = dataGridViewCellStyle.BackColor;
+    }
+
+    public void PrepareEditingControlForEdit(bool selectAll)
+    {
+        if (selectAll)
+        {
+            this.SelectAll();
+        }
+    }
+
+    public bool EditingControlWantsInputKey(Keys key, bool dataGridViewWantsInputKey)
+    {
+        // Handle specific keys to ensure the editing control processes them
+        switch (key & Keys.KeyCode)
+        {
+            case Keys.Left:
+            case Keys.Right:
+            case Keys.Up:
+            case Keys.Down:
+            case Keys.Home:
+            case Keys.End:
+            case Keys.PageDown:
+            case Keys.PageUp:
+                return true; // Let the control handle navigation keys
+            default:
+                return !dataGridViewWantsInputKey; // Delegate to DataGridView for other keys
+        }
+    }
+
+    protected override void OnTextChanged(EventArgs e)
+    {
+        base.OnTextChanged(e);
+
+        // Notify DataGridView that the value has changed
+        _valueChanged = true;
+        _dataGridView?.NotifyCurrentCellDirty(true);
+    }
+}
+
+
+
+
 using System;
 using System.ComponentModel;
 using System.Drawing;
