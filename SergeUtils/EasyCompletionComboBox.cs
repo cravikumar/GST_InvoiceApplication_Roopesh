@@ -460,4 +460,19 @@ namespace SergeUtils
         }
         #endregion
     }
+    public class EasyCompletionComboBoxCell : DataGridViewComboBoxCell
+    {
+        protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+        {
+            return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+        }
+    }
+
+    public class EasyCompletionComboBoxColumn : DataGridViewComboBoxColumn
+    {
+        public EasyCompletionComboBoxColumn()
+        {
+            this.CellTemplate = new EasyCompletionComboBoxCell();
+        }
+    }
 }

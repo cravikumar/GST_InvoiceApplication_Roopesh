@@ -1627,7 +1627,7 @@ namespace GST_InvoiceApplication
         {
             int column = dataGridView2.CurrentCell.ColumnIndex;
 
-            if (column == 0 && ConfigurationManager.AppSettings["isAutoCompleteEnabled"] == "true")
+            if (column == 0 && ConfigurationManager.AppSettings["isAutoCompleteEnabled"] == "true" && false)
             {
                 TextBox tb = e.Control as TextBox;
                 tb.CharacterCasing = CharacterCasing.Upper;
