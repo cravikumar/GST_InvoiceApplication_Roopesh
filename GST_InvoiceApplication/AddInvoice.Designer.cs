@@ -1,4 +1,7 @@
 ﻿using Invoice.DataAccess;
+using SergeUtils;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace GST_InvoiceApplication
 {
@@ -298,6 +301,11 @@ namespace GST_InvoiceApplication
             this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
             this.productNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.productNameDataGridViewTextBoxColumn.Width = 400;
+            this.productNameDataGridViewTextBoxColumn.AutoComplete = true;
+            this.productNameDataGridViewTextBoxColumn.DataSource = new List<string> { "Option1", "Option2", "Option3" };// LoadProducts();
+
+            this.productNameDataGridViewTextBoxColumn.MatchingMethod = StringMatchingMethod.UseRegexs;
+            
             // 
             // ActualPrice
             // 

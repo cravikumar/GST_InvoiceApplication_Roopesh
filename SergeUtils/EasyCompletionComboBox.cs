@@ -27,7 +27,7 @@ namespace SergeUtils
     /// Searches are made against the pattern in the combo textbox by matching
     /// all the characters in the pattern in the right order but not consecutively
     /// </summary>
-    public class EasyCompletionComboBox : ComboBox
+    public class EasyCompletionComboBox : ComboBox, IDataGridViewEditingControl
     {
         #region fields and properties
         /// <summary>our custom drowp down control</summary>
@@ -166,6 +166,12 @@ namespace SergeUtils
         /// </summary>
         protected override void OnDropDown(EventArgs e)
         {
+            if (m_dropDown == null || m_suggestionList == null)
+            {
+                // Ensure initialization before proceeding.
+                base.OnDropDown(e);
+                return;
+            }
             hideDropDown();
             base.OnDropDown(e);
         }
@@ -377,8 +383,47 @@ namespace SergeUtils
 
             e.DrawFocusRectangle();
         }
+
+        public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
+        {
+            this.Font = dataGridViewCellStyle.Font;
+            this.ForeColor = dataGridViewCellStyle.ForeColor;
+            this.BackColor = dataGridViewCellStyle.BackColor;
+        }
+
+        public void PrepareEditingControlForEdit(bool selectAll)
+        {
+            if (selectAll)
+            {
+                this.SelectAll();
+            }
+        }
+        public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
+        {
+            return this.EditingControlFormattedValue;
+        }
+        public bool EditingControlWantsInputKey(Keys key, bool dataGridViewWantsInputKey)
+        {
+            // Handle specific keys to ensure the editing control processes them
+            switch (key & Keys.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                case Keys.Up:
+                case Keys.Down:
+                case Keys.Home:
+                case Keys.End:
+                case Keys.PageDown:
+                case Keys.PageUp:
+                    return true; // Let the control handle navigation keys
+                default:
+                    return !dataGridViewWantsInputKey; // Delegate to DataGridView for other keys
+            }
+        }
+
+
         #endregion
-        
+
         #region misc
         [Category("Behavior"), DefaultValue(false), Description("Specifies whether items in the list portion of the combobo are sorted.")]
         public new bool Sorted
@@ -458,21 +503,241 @@ namespace SergeUtils
             get { return base.DropDownStyle; }
             set { base.DropDownStyle = value; }
         }
+
+        private DataGridView _dataGridView;
+        private bool _valueChanged;
+        private int _rowIndex;
+
+       
+
+        public DataGridView EditingControlDataGridView
+        {
+            get => _dataGridView;
+            set => _dataGridView = value;
+        }
+
+        public object EditingControlFormattedValue
+        {
+            get => this.Text;
+            set
+            {
+                if (value is string text)
+                {
+                    this.Text = text;
+                }
+            }
+        }
+
+        public int EditingControlRowIndex
+        {
+            get => _rowIndex;
+            set => _rowIndex = value;
+        }
+
+        public bool EditingControlValueChanged
+        {
+            get => _valueChanged;
+            set => _valueChanged = value;
+        }
+
+        public Cursor EditingPanelCursor => Cursors.Default;
+
+        public bool RepositionEditingControlOnValueChange => false;
         #endregion
     }
+
+    public class EasyCompletionComboBoxEditingControl : EasyCompletionComboBox, IDataGridViewEditingControl
+    {
+        private DataGridView _dataGridView;
+        private bool _valueChanged;
+        private int _rowIndex;
+
+        public EasyCompletionComboBoxEditingControl()
+        {
+            this.DropDownStyle = ComboBoxStyle.DropDown;
+        }
+
+        public DataGridView EditingControlDataGridView
+        {
+            get => _dataGridView;
+            set => _dataGridView = value;
+        }
+
+        public object EditingControlFormattedValue
+        {
+            get => this.Text;
+            set
+            {
+                if (value is string text)
+                {
+                    this.Text = text;
+                }
+            }
+        }
+
+        public int EditingControlRowIndex
+        {
+            get => _rowIndex;
+            set => _rowIndex = value;
+        }
+
+        public bool EditingControlValueChanged
+        {
+            get => _valueChanged;
+            set => _valueChanged = value;
+        }
+
+        public Cursor EditingPanelCursor => Cursors.Default;
+
+        public bool RepositionEditingControlOnValueChange => false;
+
+        
+
+        public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
+        {
+            this.Font = dataGridViewCellStyle.Font;
+            this.ForeColor = dataGridViewCellStyle.ForeColor;
+            this.BackColor = dataGridViewCellStyle.BackColor;
+        }
+
+        public void PrepareEditingControlForEdit(bool selectAll)
+        {
+            if (selectAll)
+            {
+                this.SelectAll();
+            }
+        }
+        public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
+        {
+            return this.EditingControlFormattedValue;
+        }
+        public bool EditingControlWantsInputKey(Keys key, bool dataGridViewWantsInputKey)
+        {
+            // Handle specific keys to ensure the editing control processes them
+            switch (key & Keys.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Right:
+                case Keys.Up:
+                case Keys.Down:
+                case Keys.Home:
+                case Keys.End:
+                case Keys.PageDown:
+                case Keys.PageUp:
+                    return true; // Let the control handle navigation keys
+                default:
+                    return !dataGridViewWantsInputKey; // Delegate to DataGridView for other keys
+            }
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            // Notify DataGridView that the value has changed
+            _valueChanged = true;
+            _dataGridView?.NotifyCurrentCellDirty(true);
+        }
+    }
+    //public class EasyCompletionComboBoxCell : DataGridViewComboBoxCell
+    //{
+    //    public StringMatchingMethod MatchingMethod { get; set; } = StringMatchingMethod.UseRegexs;
+    //    public EasyCompletionComboBoxCell()
+    //    {
+    //        // Ensure cell inherits default properties
+    //        this.FlatStyle = FlatStyle.Flat;
+    //    }
+
+    //    public override Type EditType
+    //    {
+    //        get
+    //        {
+    //            // Specify the editing control type as EasyCompletionComboBox
+    //            return typeof(EasyCompletionComboBox);
+    //        }
+    //    }
+
+    //    public override object Clone()
+    //    {
+    //        var cell= (EasyCompletionComboBoxCell)base.Clone();
+    //        cell.MatchingMethod = this.MatchingMethod;
+    //        //EasyCompletionComboBoxCell clone = (EasyCompletionComboBoxCell)base.Clone();
+    //        return cell;
+    //    }
+
+
+
+    //    protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+    //    {
+    //        return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+    //    }
+    //}
+
+    //public class EasyCompletionComboBoxColumn : DataGridViewComboBoxColumn
+    //{
+    //    public EasyCompletionComboBoxColumn()
+    //    {
+    //        this.CellTemplate = new EasyCompletionComboBoxCell();
+    //    }
+    //}
+
     public class EasyCompletionComboBoxCell : DataGridViewComboBoxCell
     {
-        protected override object GetFormattedValue(object value, int rowIndex, ref DataGridViewCellStyle cellStyle, TypeConverter valueTypeConverter, TypeConverter formattedValueTypeConverter, DataGridViewDataErrorContexts context)
+        public StringMatchingMethod MatchingMethod { get; set; } = StringMatchingMethod.NoWildcards;
+
+        public override Type EditType => typeof(EasyCompletionComboBox);
+
+        public override object Clone()
         {
-            return base.GetFormattedValue(value, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
+            var cell = (EasyCompletionComboBoxCell)base.Clone();
+            cell.MatchingMethod = this.MatchingMethod; // Ensure MatchingMethod is cloned
+            return cell;
+        }
+
+        public override void InitializeEditingControl(int rowIndex, object initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
+        {
+            base.InitializeEditingControl(rowIndex, initialFormattedValue, dataGridViewCellStyle);
+
+            if (DataGridView.EditingControl is EasyCompletionComboBox editingControl)
+            {
+                editingControl.MatchingMethod = this.MatchingMethod; // Pass the MatchingMethod
+            }
         }
     }
 
+
     public class EasyCompletionComboBoxColumn : DataGridViewComboBoxColumn
     {
+        public StringMatchingMethod MatchingMethod
+        {
+            get
+            {
+                if (CellTemplate is EasyCompletionComboBoxCell cell)
+                {
+                    return cell.MatchingMethod;
+                }
+                return StringMatchingMethod.UseRegexs;
+            }
+            set
+            {
+                if (CellTemplate is EasyCompletionComboBoxCell cell)
+                {
+                    cell.MatchingMethod = value;
+                }
+                foreach (DataGridViewRow row in DataGridView?.Rows ?? new DataGridViewRowCollection(null))
+                {
+                    if (row.Cells[Index] is EasyCompletionComboBoxCell rowCell)
+                    {
+                        rowCell.MatchingMethod = value;
+                    }
+                }
+            }
+        }
+
         public EasyCompletionComboBoxColumn()
         {
-            this.CellTemplate = new EasyCompletionComboBoxCell();
+            CellTemplate = new EasyCompletionComboBoxCell();
         }
     }
+
 }

@@ -57,7 +57,7 @@ namespace GST_InvoiceApplication
             }
         }
 
-        private AutoCompleteStringCollection LoadProducts()
+        public AutoCompleteStringCollection LoadProducts()
         {
             string sql = "Select DISTINCT ProductName from ProductMaster;";
             DataSet ds = Functions.RunSelectSql(sql);
