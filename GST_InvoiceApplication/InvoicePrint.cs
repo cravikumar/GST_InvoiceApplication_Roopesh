@@ -70,6 +70,9 @@ namespace GST_InvoiceApplication
             else
                 originalInvoicePath = "\\InvoiceOriginalV2.rdlc";
 
+            if(originalInvoicePath.Contains("V2") && _currentInvoice.CompanyId==1)
+            { originalInvoicePath = originalInvoicePath.Replace("V2", "V3"); }
+
             if (!File.Exists(path + originalInvoicePath))
                 MessageBox.Show("File Not present at " + path + originalInvoicePath);
 
@@ -486,7 +489,8 @@ namespace GST_InvoiceApplication
                 originalInvoicePath = "\\InvoiceOriginalV2_CompTax.rdlc";
             else
                 originalInvoicePath = "\\InvoiceOriginalV2.rdlc";
-
+            if (originalInvoicePath.Contains("V2") && _currentInvoice.CompanyId == 1)
+            { originalInvoicePath = originalInvoicePath.Replace("V2", "V3"); }
 
             if (!File.Exists(path + originalInvoicePath))
                 MessageBox.Show("File Not present at " + path + originalInvoicePath);

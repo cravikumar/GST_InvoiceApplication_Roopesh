@@ -1208,10 +1208,6 @@
                     <Value>=Parameters!BillNo.Value</Value>
                     <Style />
                   </TextRun>
-                  <TextRun>
-                    <Value>ddd</Value>
-                    <Style />
-                  </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
@@ -1287,7 +1283,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>BILL NO</Value>
+                    <Value>BILL a</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -1295,7 +1291,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
-            <Top>0.44652in</Top>
+            <Top>0.43263in</Top>
             <Left>4.69092in</Left>
             <Height>0.1875in</Height>
             <Width>0.80153in</Width>
@@ -1562,7 +1558,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.75183in</Height>
+          <Height>2.29349in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2178,7 +2174,7 @@
                 </Line>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.0366in</Top>
+              <Top>0.59664in</Top>
               <Left>4.57382in</Left>
               <Height>1.59671in</Height>
               <Width>2.65152in</Width>
@@ -2212,7 +2208,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox42</rd:DefaultName>
-              <Top>0.12823cm</Top>
+              <Top>1.55073cm</Top>
               <Left>0.3579in</Left>
               <Height>0.30013in</Height>
               <Width>4.06494in</Width>
@@ -2252,7 +2248,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox42</rd:DefaultName>
-              <Top>0.96113cm</Top>
+              <Top>2.38363cm</Top>
               <Left>0.39904in</Left>
               <Height>0.19445in</Height>
               <Width>4.06494in</Width>
@@ -2288,7 +2284,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox43</rd:DefaultName>
-              <Top>0.61451in</Top>
+              <Top>1.17455in</Top>
               <Left>1.01358cm</Left>
               <Height>0.17408in</Height>
               <Width>1.9828in</Width>
@@ -2317,7 +2313,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox42</rd:DefaultName>
-              <Top>0.81637in</Top>
+              <Top>1.37641in</Top>
               <Left>0.38385in</Left>
               <Height>0.27679in</Height>
               <Width>4.08013in</Width>
@@ -2349,7 +2345,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox46</rd:DefaultName>
-              <Top>1.35502in</Top>
+              <Top>1.91506in</Top>
               <Left>0.50669in</Left>
               <Height>0.16717in</Height>
               <Width>1.28051in</Width>
@@ -2383,7 +2379,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox47</rd:DefaultName>
-              <Top>1.48103in</Top>
+              <Top>2.04107in</Top>
               <Left>2.56941in</Left>
               <Height>0.12449in</Height>
               <Width>1.85343in</Width>
@@ -2395,7 +2391,7 @@
               </Style>
             </Textbox>
             <Line Name="Line14">
-              <Top>0.0366in</Top>
+              <Top>0.59664in</Top>
               <Left>4.57382in</Left>
               <Height>1.52727in</Height>
               <Width>0in</Width>
@@ -2407,7 +2403,7 @@
               </Style>
             </Line>
             <Line Name="Line15">
-              <Top>0.0366in</Top>
+              <Top>0.59664in</Top>
               <Left>0.22909in</Left>
               <Height>1.59671in</Height>
               <Width>0in</Width>
@@ -2419,7 +2415,7 @@
               </Style>
             </Line>
             <Line Name="Line19">
-              <Top>1.63331in</Top>
+              <Top>2.19335in</Top>
               <Left>0.22909in</Left>
               <Height>0in</Height>
               <Width>4.58863in</Width>
@@ -2431,7 +2427,7 @@
               </Style>
             </Line>
             <Line Name="Line20">
-              <Top>0.0366in</Top>
+              <Top>0.59664in</Top>
               <Left>0.22909in</Left>
               <Height>0in</Height>
               <Width>4.33267in</Width>
@@ -2443,7 +2439,7 @@
               </Style>
             </Line>
             <Line Name="Line21">
-              <Top>0.81637in</Top>
+              <Top>1.37641in</Top>
               <Left>0.22909in</Left>
               <Height>0in</Height>
               <Width>4.33267in</Width>
@@ -2455,7 +2451,7 @@
               </Style>
             </Line>
             <Line Name="Line22">
-              <Top>1.14872in</Top>
+              <Top>1.70876in</Top>
               <Left>0.22909in</Left>
               <Height>0in</Height>
               <Width>4.34473in</Width>
@@ -2491,7 +2487,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox43</rd:DefaultName>
-              <Top>0.61451in</Top>
+              <Top>1.17455in</Top>
               <Left>6.6308cm</Left>
               <Height>0.17408in</Height>
               <Width>1.86549in</Width>
@@ -2521,7 +2517,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox47</rd:DefaultName>
-              <Top>1.14872in</Top>
+              <Top>1.70876in</Top>
               <Left>2.52199in</Left>
               <Height>0.11109in</Height>
               <Width>1.88747in</Width>
@@ -2535,7 +2531,7 @@
               </Style>
             </Textbox>
             <Line Name="Line25">
-              <Top>0.3784in</Top>
+              <Top>0.93844in</Top>
               <Left>0.22909in</Left>
               <Height>0in</Height>
               <Width>4.33267in</Width>
@@ -2550,7 +2546,7 @@
               <Source>Embedded</Source>
               <Value>NARsign</Value>
               <Sizing>Fit</Sizing>
-              <Top>1.2737in</Top>
+              <Top>1.83374in</Top>
               <Left>2.61055in</Left>
               <Height>0.1994in</Height>
               <Width>1.45606in</Width>
@@ -2561,6 +2557,89 @@
                 </Border>
               </Style>
             </Image>
+            <Line Name="Line23">
+              <Top>0.06944in</Top>
+              <Left>0.22909in</Left>
+              <Height>0in</Height>
+              <Width>4.34473in</Width>
+              <ZIndex>17</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
+            <Line Name="Line27">
+              <Top>0.06944in</Top>
+              <Left>4.57382in</Left>
+              <Height>0.39521in</Height>
+              <Width>0in</Width>
+              <ZIndex>18</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
+            <Textbox Name="Textbox57">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Notes:</Value>
+                      <Style>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!Notes.Value</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox42</rd:DefaultName>
+              <Top>0.24694cm</Top>
+              <Left>0.36996in</Left>
+              <Height>0.29798in</Height>
+              <Width>4.0395in</Width>
+              <ZIndex>19</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Textbox>
+            <Line Name="Line26">
+              <Top>0.46465in</Top>
+              <Left>0.24379in</Left>
+              <Height>0in</Height>
+              <Width>4.33003in</Width>
+              <ZIndex>20</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
+            <Line Name="Line28">
+              <Top>0.06944in</Top>
+              <Left>0.24379in</Left>
+              <Height>0.39521in</Height>
+              <Width>0in</Width>
+              <ZIndex>21</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
           </ReportItems>
           <Style>
             <Border>
@@ -2595,10 +2674,6 @@
   </ReportSections>
   <ReportParameters>
     <ReportParameter Name="CompanyName">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Notes">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -2702,6 +2777,10 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Notes">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
     <ReportParameter Name="SGSTPer">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
@@ -2736,132 +2815,132 @@
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>Notes</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>1</RowIndex>
           <ParameterName>CompanyAddressOneLine</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>PhoneNumbers</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>2</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
           <ParameterName>CompanyGSTNo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>BillType</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>3</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>2</RowIndex>
           <ParameterName>BillNo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>BillDate</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>4</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>3</RowIndex>
           <ParameterName>TransportName</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>LRNo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>5</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>4</RowIndex>
           <ParameterName>CustomerName</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>CustomerAddress</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>6</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>5</RowIndex>
           <ParameterName>CustomerGST</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>6</RowIndex>
           <ParameterName>AadhaarPAN</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>7</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>6</RowIndex>
           <ParameterName>BankName</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>7</RowIndex>
           <ParameterName>AccNo</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>8</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>7</RowIndex>
           <ParameterName>IFSCCode</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>8</RowIndex>
           <ParameterName>Discount</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>9</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>8</RowIndex>
           <ParameterName>AmountBeforeTax</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>9</RowIndex>
           <ParameterName>SGST</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>10</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>9</RowIndex>
           <ParameterName>CGST</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>10</RowIndex>
           <ParameterName>IGST</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>11</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>10</RowIndex>
           <ParameterName>AmountAfterTax</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>11</RowIndex>
           <ParameterName>RoundValue</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>12</RowIndex>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>11</RowIndex>
           <ParameterName>CustomerPhone</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
+          <ColumnIndex>0</ColumnIndex>
           <RowIndex>12</RowIndex>
           <ParameterName>TotalPayable</ParameterName>
         </CellDefinition>
         <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>12</RowIndex>
+          <ParameterName>CGSTPer</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>13</RowIndex>
-          <ParameterName>CGSTPer</ParameterName>
+          <ParameterName>Notes</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
