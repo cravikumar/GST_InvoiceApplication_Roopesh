@@ -738,7 +738,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!CustomerName.Value</Value>
+                        <Value>=Parameters!CustomerAddress.Value</Value>
                         <Style>
                           <FontSize>7.5pt</FontSize>
                         </Style>
