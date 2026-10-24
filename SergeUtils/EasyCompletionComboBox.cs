@@ -14,6 +14,7 @@
 // along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -40,6 +41,16 @@ namespace SergeUtils
         private bool m_fromKeyboard;
         /// <summary>How do we match user input to strings?</summary>
         private StringMatchingMethod m_matchingMethod;
+
+        private bool m_committedInDropDown;
+
+        private string[] m_itemTexts;
+        private string[] m_suggestionSource;
+
+        private const int MaxSuggestions = 200;
+
+
+        public event EventHandler SelectionCompleted;
         #endregion
 
         /// <summary>
@@ -55,7 +66,7 @@ namespace SergeUtils
             m_suggestionList = new ListBox
             {
                 DisplayMember = "Text",
-                TabStop = false, 
+                TabStop = false,
                 Dock = DockStyle.Fill,
                 DrawMode = DrawMode.OwnerDrawFixed,
                 IntegralHeight = true,
@@ -118,6 +129,7 @@ namespace SergeUtils
             // Hide the "standard" drop down if any
             if (base.DroppedDown)
             {
+                m_committedInDropDown = false;
                 BeginUpdate();
                 // setting DroppedDown to false may select an item
                 // so we save the editbox state
@@ -127,7 +139,7 @@ namespace SergeUtils
 
                 // close the "standard" dropdown
                 base.DroppedDown = false;
-                
+
                 // and restore the contents of the editbox
                 Text = oText;
                 Select(selStart, selLen);
@@ -168,6 +180,17 @@ namespace SergeUtils
         {
             hideDropDown();
             base.OnDropDown(e);
+            if (m_suggestionSource != null)
+            {
+
+                BeginInvoke(new Action(() =>
+                {
+                    if (buildSuggestions(Text) > 0)
+                    {
+                        showDropDown();
+                    }
+                }));
+            }
         }
         #endregion
 
@@ -177,13 +200,105 @@ namespace SergeUtils
         /// </summary>
         private void onSuggestionListClick(object sender, EventArgs e)
         {
-            m_fromKeyboard = false;
-            StringMatch sel = (StringMatch)m_suggestionList.SelectedItem;
-            Text = sel.Text;
-            Select(0, Text.Length);
+            commitHighlightedSuggestion();
             Focus();
+            raiseSelectionCompleted();
         }
 
+        private void commitHighlightedSuggestion()
+        {
+            m_fromKeyboard = false;
+            StringMatch sel = m_suggestionList.SelectedItem as StringMatch;
+            if (sel != null)
+            {
+                selectMatch(sel);
+            }
+            Select(0, Text.Length);
+            hideDropDown();
+        }
+
+
+        private void selectMatch(StringMatch match)
+        {
+            if (match.ItemIndex >= 0 && match.ItemIndex < Items.Count && SelectedIndex != match.ItemIndex)
+            {
+                SelectedIndex = match.ItemIndex;
+            }
+            else if (Text != match.Text)
+            {
+                Text = match.Text;
+            }
+        }
+
+        private string[] getItemTexts()
+        {
+            if (m_suggestionSource != null)
+            {
+                return m_suggestionSource;
+            }
+            if (m_itemTexts == null || m_itemTexts.Length != Items.Count)
+            {
+                string[] texts = new string[Items.Count];
+                for (int i = 0; i < texts.Length; i++)
+                {
+                    texts[i] = GetItemText(Items[i]);
+                }
+                m_itemTexts = texts;
+            }
+            return m_itemTexts;
+        }
+
+
+
+
+        public void InvalidateItemTextCache()
+        {
+            m_itemTexts = null;
+        }
+
+
+
+
+
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string[] SuggestionSource
+        {
+            get { return m_suggestionSource; }
+            set { m_suggestionSource = value; }
+        }
+
+        protected override void OnDataSourceChanged(EventArgs e)
+        {
+            m_itemTexts = null;
+            base.OnDataSourceChanged(e);
+        }
+
+        protected override void OnDisplayMemberChanged(EventArgs e)
+        {
+            m_itemTexts = null;
+            base.OnDisplayMemberChanged(e);
+        }
+
+        private void raiseSelectionCompleted()
+        {
+            EventHandler handler = SelectionCompleted;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+
+
+
+
+        protected override void OnSelectionChangeCommitted(EventArgs e)
+        {
+            if (base.DroppedDown)
+            {
+                m_committedInDropDown = true;
+            }
+            base.OnSelectionChangeCommitted(e);
+        }
         /// <summary>
         /// Process command keys
         /// </summary>
@@ -192,12 +307,7 @@ namespace SergeUtils
             if ((keyData == Keys.Tab) && (m_dropDown.Visible))
             {
                 // we change the selection but will also allow the navigation to the next control
-                if (m_suggestionList.Text.Length != 0)
-                {
-                    Text = m_suggestionList.Text;
-                }
-                Select(0, Text.Length);
-                hideDropDown();
+                commitHighlightedSuggestion();
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -213,6 +323,12 @@ namespace SergeUtils
             if (!m_dropDown.Visible)
             {
                 base.OnKeyDown(e);
+                if (e.KeyCode == Keys.Enter && !base.DroppedDown)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    raiseSelectionCompleted();
+                }
                 return;
             }
             switch (e.KeyCode)
@@ -238,12 +354,8 @@ namespace SergeUtils
                     }
                     break;
                 case Keys.Enter:
-                    if (m_suggestionList.Text.Length != 0)
-                    {
-                        Text = m_suggestionList.Text;
-                    }
-                    Select(0, Text.Length);
-                    hideDropDown();
+                    commitHighlightedSuggestion();
+                    raiseSelectionCompleted();
                     break;
                 case Keys.Escape:
                     hideDropDown();
@@ -265,6 +377,11 @@ namespace SergeUtils
         {
             m_fromKeyboard = false;
             base.OnDropDownClosed(e);
+            if (m_committedInDropDown)
+            {
+                m_committedInDropDown = false;
+                raiseSelectionCompleted();
+            }
         }
 
         /// <summary>
@@ -281,24 +398,14 @@ namespace SergeUtils
                 return;
             }
 
-            m_suggestionList.BeginUpdate();
-            m_suggestionList.Items.Clear();
-            StringMatcher matcher = new StringMatcher(MatchingMethod, Text);
-            foreach (object item in Items)
-            {
-                StringMatch sm = matcher.Match(GetItemText(item));
-                if (sm != null)
-                {
-                    m_suggestionList.Items.Add(sm);
-                }
-            }
-            m_suggestionList.EndUpdate();
 
-            bool visible = m_suggestionList.Items.Count != 0;
+            bool visible = buildSuggestions(Text) != 0;
 
             if (m_suggestionList.Items.Count == 1 && ((StringMatch)m_suggestionList.Items[0]).Text.Length == Text.Trim().Length)
             {
                 StringMatch sel = (StringMatch)m_suggestionList.Items[0];
+                m_fromKeyboard = false;
+                selectMatch(sel);
                 Text = sel.Text;
                 Select(0, Text.Length);
                 visible = false;
@@ -310,154 +417,179 @@ namespace SergeUtils
             }
             else
             {
-                hideDropDown();                
+                hideDropDown();
             }
-            
+
             m_fromKeyboard = false;
         }
-
-        /// <summary>
-        /// We highlight the selection under the mouse in the suggestion listbox
-        /// </summary>
-        private void onSuggestionListMouseMove(object sender, MouseEventArgs e)
+        private int buildSuggestions(string pattern)
         {
-            int idx = m_suggestionList.IndexFromPoint(e.Location);
-            if ((idx >= 0) && (idx != m_suggestionList.SelectedIndex))
+            StringMatcher matcher = new StringMatcher(MatchingMethod, pattern);
+            string[] texts = getItemTexts();
+            bool indexIsItem = m_suggestionSource == null;
+            List<object> matches = new List<object>();
+            for (int i = 0; i < texts.Length && matches.Count < MaxSuggestions; i++)
             {
-                m_suggestionList.SelectedIndex = idx;
-            }
-        }
-        #endregion
-
-        #region owner drawn
-        /// <summary>
-        /// We keep track of system settings changes for the font
-        /// </summary>
-        private void onFontChanged(object sender, EventArgs e)
-        {
-            if (m_boldFont != null)
-            {
-                m_boldFont.Dispose();
-            }
-            m_suggestionList.Font = Font;
-            m_boldFont = new Font(Font, FontStyle.Bold);
-            m_suggestionList.ItemHeight = m_boldFont.Height + 2;
-        }
-
-        /// <summary>
-        /// Draw a segment of a string and updates the bound rectangle for being used for the next segment drawing
-        /// </summary>
-        private static void DrawString(Graphics g, Color color, ref Rectangle rect, string text, Font font)
-        {
-            Size proposedSize = new Size(int.MaxValue, int.MaxValue);
-            Size sz = TextRenderer.MeasureText(g, text, font, proposedSize, TextFormatFlags.NoPadding);
-            TextRenderer.DrawText(g, text, font, rect, color, TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
-            rect.X += sz.Width;
-            rect.Width -= sz.Width;
-        }
-
-        /// <summary>
-        /// Draw an item in the suggestion listbox
-        /// </summary>
-        private void onSuggestionListDrawItem(object sender, DrawItemEventArgs e)
-        {
-            StringMatch sm = (StringMatch) m_suggestionList.Items[e.Index];
-
-            e.DrawBackground();
-            
-            bool isBold = sm.StartsOnMatch;
-            Rectangle rBounds = e.Bounds;
-
-            foreach (string s in sm.Segments)
-            {
-                Font f = isBold ? m_boldFont : Font;
-                DrawString(e.Graphics, e.ForeColor, ref rBounds, s, f);
-                isBold = !isBold;
-            }
-
-            e.DrawFocusRectangle();
-        }
-        #endregion
-        
-        #region misc
-        [Category("Behavior"), DefaultValue(false), Description("Specifies whether items in the list portion of the combobo are sorted.")]
-        public new bool Sorted
-        {
-            get { return base.Sorted; }
-            set
-            {
-                m_suggestionList.Sorted = value;
-                base.Sorted = value;
-            }
-        }
-
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public new bool DroppedDown
-        {
-            get { return base.DroppedDown || m_dropDown.Visible; }
-            set 
-            { 
-                m_dropDown.Visible = false;
-                base.DroppedDown = value;
-            }
-        }
-        #endregion
-
-        #region New properties
-        [
-            DefaultValue(StringMatchingMethod.NoWildcards),
-            Description("How strings are matched against the user input"),
-            Browsable(true),
-            EditorBrowsable(EditorBrowsableState.Always),
-            Category("Behavior")
-        ]
-        public StringMatchingMethod MatchingMethod
-        {
-            get { return m_matchingMethod;  }
-            set
-            {
-                if (m_matchingMethod != value)
+                StringMatch sm = matcher.Match(texts[i]);
+                if (sm != null)
                 {
-                    m_matchingMethod = value;
-                    if (m_dropDown.Visible)
+                    if (indexIsItem)
                     {
-                        // recalculate the matches
-                        showDropDown();
+                        sm.ItemIndex = i;
+                    }
+                    matches.Add(sm);
+                }
+
+            }
+            m_suggestionList.BeginUpdate();
+            m_suggestionList.Items.Clear();
+            m_suggestionList.Items.AddRange(matches.ToArray());
+            m_suggestionList.EndUpdate();
+            return matches.Count;
+        }
+
+            /// <summary>
+            /// We highlight the selection under the mouse in the suggestion listbox
+            /// </summary>
+            private void onSuggestionListMouseMove(object sender, MouseEventArgs e)
+            {
+                int idx = m_suggestionList.IndexFromPoint(e.Location);
+                if ((idx >= 0) && (idx != m_suggestionList.SelectedIndex))
+                {
+                    m_suggestionList.SelectedIndex = idx;
+                }
+            }
+            #endregion
+
+            #region owner drawn
+            /// <summary>
+            /// We keep track of system settings changes for the font
+            /// </summary>
+            private void onFontChanged(object sender, EventArgs e)
+            {
+                if (m_boldFont != null)
+                {
+                    m_boldFont.Dispose();
+                }
+                m_suggestionList.Font = Font;
+                m_boldFont = new Font(Font, FontStyle.Bold);
+                m_suggestionList.ItemHeight = m_boldFont.Height + 2;
+            }
+
+            /// <summary>
+            /// Draw a segment of a string and updates the bound rectangle for being used for the next segment drawing
+            /// </summary>
+            private static void DrawString(Graphics g, Color color, ref Rectangle rect, string text, Font font)
+            {
+                Size proposedSize = new Size(int.MaxValue, int.MaxValue);
+                Size sz = TextRenderer.MeasureText(g, text, font, proposedSize, TextFormatFlags.NoPadding);
+                TextRenderer.DrawText(g, text, font, rect, color, TextFormatFlags.Left | TextFormatFlags.VerticalCenter | TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix);
+                rect.X += sz.Width;
+                rect.Width -= sz.Width;
+            }
+
+            /// <summary>
+            /// Draw an item in the suggestion listbox
+            /// </summary>
+            private void onSuggestionListDrawItem(object sender, DrawItemEventArgs e)
+            {
+                StringMatch sm = (StringMatch)m_suggestionList.Items[e.Index];
+
+                e.DrawBackground();
+
+                bool isBold = sm.StartsOnMatch;
+                Rectangle rBounds = e.Bounds;
+
+                foreach (string s in sm.Segments)
+                {
+                    Font f = isBold ? m_boldFont : Font;
+                    DrawString(e.Graphics, e.ForeColor, ref rBounds, s, f);
+                    isBold = !isBold;
+                }
+
+                e.DrawFocusRectangle();
+            }
+            #endregion
+
+            #region misc
+            [Category("Behavior"), DefaultValue(false), Description("Specifies whether items in the list portion of the combobo are sorted.")]
+            public new bool Sorted
+        {
+                get { return base.Sorted; }
+                set
+            {
+                    m_suggestionList.Sorted = value;
+                    base.Sorted = value;
+                }
+            }
+
+            [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+            public new bool DroppedDown
+        {
+                get { return base.DroppedDown || m_dropDown.Visible; }
+                set
+            {
+                    m_dropDown.Visible = false;
+                    base.DroppedDown = value;
+                }
+            }
+            #endregion
+
+            #region New properties
+            [
+                DefaultValue(StringMatchingMethod.NoWildcards),
+                Description("How strings are matched against the user input"),
+                Browsable(true),
+                EditorBrowsable(EditorBrowsableState.Always),
+                Category("Behavior")
+            ]
+            public StringMatchingMethod MatchingMethod
+        {
+                get { return m_matchingMethod; }
+                set
+            {
+                    if (m_matchingMethod != value)
+                    {
+                        m_matchingMethod = value;
+                        if (m_dropDown.Visible)
+                        {
+                            // recalculate the matches
+                            showDropDown();
+                        }
                     }
                 }
             }
-        }
-        #endregion
-        
-        #region Hidden inherited properties
-        /// <summary>This property is not relevant for this class.</summary>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
-        public new AutoCompleteSource AutoCompleteSource
+            #endregion
+
+            #region Hidden inherited properties
+            /// <summary>This property is not relevant for this class.</summary>
+            [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
+            public new AutoCompleteSource AutoCompleteSource
         {
-            get { return base.AutoCompleteSource; }
-            set { base.AutoCompleteSource = value; }
-        }
-        /// <summary>This property is not relevant for this class.</summary>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
-        public new AutoCompleteStringCollection AutoCompleteCustomSource 
+                get { return base.AutoCompleteSource; }
+                set { base.AutoCompleteSource = value; }
+            }
+            /// <summary>This property is not relevant for this class.</summary>
+            [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
+            public new AutoCompleteStringCollection AutoCompleteCustomSource
         {
-            get { return base.AutoCompleteCustomSource; }
-            set { base.AutoCompleteCustomSource = value; }
-        }
-        /// <summary>This property is not relevant for this class.</summary>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
-        public new AutoCompleteMode AutoCompleteMode
+                get { return base.AutoCompleteCustomSource; }
+                set { base.AutoCompleteCustomSource = value; }
+            }
+            /// <summary>This property is not relevant for this class.</summary>
+            [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
+            public new AutoCompleteMode AutoCompleteMode
         {
-            get { return base.AutoCompleteMode; }
-            set { base.AutoCompleteMode = value; }
-        }
-        /// <summary>This property is not relevant for this class.</summary>
-        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
-        public new ComboBoxStyle DropDownStyle
+                get { return base.AutoCompleteMode; }
+                set { base.AutoCompleteMode = value; }
+            }
+            /// <summary>This property is not relevant for this class.</summary>
+            [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden), EditorBrowsable(EditorBrowsableState.Never)]
+            public new ComboBoxStyle DropDownStyle
         {
-            get { return base.DropDownStyle; }
-            set { base.DropDownStyle = value; }
+                get { return base.DropDownStyle; }
+                set { base.DropDownStyle = value; }
+            }
+            #endregion
         }
-        #endregion
     }
-}

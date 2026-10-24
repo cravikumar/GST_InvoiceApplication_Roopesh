@@ -173,6 +173,7 @@
       <DependentUpon>HSNSalesReportNew.cs</DependentUpon>
     </Compile>
     <Compile Include="License.cs" />
+    <Compile Include="ProductAutoCompleteColumn.cs" />
     <Compile Include="ProductSetup.cs">
       <SubType>Form</SubType>
     </Compile>

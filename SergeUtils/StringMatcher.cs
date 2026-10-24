@@ -439,5 +439,10 @@ namespace SergeUtils
         /// Is the first segment a match?
         /// </summary>
         public bool StartsOnMatch { get; internal set; }
+
+
+
+        public int ItemIndex { get { return m_itemIndex; } internal set { m_itemIndex = value; } }
+        private int m_itemIndex = -1;
     }
 }

@@ -11,6 +11,23 @@ namespace Invoice.DataAccess
 {
     public class Functions
     {
+        private static OleDbConnection _keepAliveConnection;
+
+        private static void KeepDatabaseOpen()
+        {
+            if (_keepAliveConnection != null)
+                return;
+            try
+            {
+                _keepAliveConnection = new OleDbConnection(GetDatabaseConnectionString());
+                _keepAliveConnection.Open();
+            }
+            catch (Exception e)
+            {
+                _keepAliveConnection = null;
+                LogException(e);
+            }
+        }
         public static string GetDatabaseConnectionString(string myCon = "")
         {
             //string ConString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+"\"C:\\Users\\SAIRAM\\Documents\\Visual Studio 2013\\Projects\\GST_InvoiceApplication\\GST_InvoiceApplication\\GST.mdb\""+";Persist Security Info=True";
@@ -24,6 +41,7 @@ namespace Invoice.DataAccess
 
         public static DataSet RunSelectSql(string sql)
         {
+            KeepDatabaseOpen();
             return RunSelectSql( sql,GetDatabaseConnectionString());
         }
         public static string getPreviousYear()
@@ -49,6 +67,7 @@ namespace Invoice.DataAccess
 
         public static void RunExecuteNonQuery(string sql)
         {
+            KeepDatabaseOpen();
             using (var con = new OleDbConnection(GetDatabaseConnectionString()))
             {
                 con.Open();
@@ -72,12 +91,33 @@ namespace Invoice.DataAccess
 
         public static void LogException(Exception ex)
         {
- 
+
         }
 
+        public static void CloseKeepAliveConnection()
+        {
+            if (_keepAliveConnection == null)
+                return;
+
+            try
+            {
+                if (_keepAliveConnection.State != ConnectionState.Closed)
+                    _keepAliveConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                LogException(ex);
+            }
+            finally
+            {
+                _keepAliveConnection.Dispose();
+                _keepAliveConnection = null;
+            }
+        }
         public static int RunExecuteScalarSql_getIdentity(string sql)
         {
             int identity = 0;
+            KeepDatabaseOpen();
             using (var con = new OleDbConnection(GetDatabaseConnectionString()))
             {
                 con.Open();
